@@ -1,32 +1,1 @@
-<?php
-
-define('APP_PATH', realpath(dirname(__FILE__)) . '/');
-
-define('CLASS_PATH', APP_PATH . 'webclasses/');
-
-require_once(CLASS_PATH . 'config.php');
-
-try {
-    Dispatcher::process(Request::getContext());
-} catch (ClassNotFoundException $e) {
-    write_log('classnotfound', $e->getMessage() );
-    exit();
-} catch (LibraryNotFoundException $e) {
-    write_log('librarynotfound', $e->getMessage() );
-    exit();
-} catch (ViewNotFoundException $e) {
-    write_log('viewnotfound', $e->getMessage() );
-    exit();
-} catch (RequestException $e) {
-    write_log('requestexception', $e->getMessage() );
-    exit();
-} catch (IOException $e) {
-    write_log('ioexception', $e->getMessage() );
-    exit();
-} catch (DatabaseException $e) {
-    write_log('databaseio', $e->getMessage() );
-    exit();
-} catch (Exception $e) {
-    write_log('exception', $e->getMessage() );
-    exit();
-}
+<?phperror_reporting(0);define('APP_DIR', realpath(dirname(__FILE__)) . '/app/');define('CONT_DIR', APP_DIR . 'controllers/');define('LIBS_DIR', APP_DIR . 'libraries/');define('VIEW_DIR', APP_DIR . 'views/');define('MODS_DIR', APP_DIR . 'models/');define('UPLOAD_DIR', APP_DIR . 'uploads/');spl_autoload_extensions('.php');spl_autoload_register(array('Autoloader', 'load'));class Autoloader {    public static function load($classname) {        $a = $classname[0];        if ($a == 'c') {            @require_once CONT_DIR . strtolower(substr($classname, 1)) . '.php';        } elseif ($a >= 'A' && $a <= 'Z') {            @require_once LIBS_DIR . str_replace(array('\\', '_'), DIRECTORY_SEPARATOR, $classname) . '.php';        } else {            @require_once MODS_DIR . strtolower($classname) . '.php';        }    }}@require_once APP_DIR . 'coreclasses.php';date_default_timezone_set(DEFAULT_TIMEZONE);try {    Dispatcher::process(Request::getContext());} catch (Exception $e) {    $data['message'] = DEBUG ? $e : '';    if (Request::getContext()->isAjax()) {        $data['layout'] = false;    }    View::display($data, 'errors/exception');    exit;}

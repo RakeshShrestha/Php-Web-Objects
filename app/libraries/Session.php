@@ -1,0 +1,1 @@
+<?phpclass Session extends Session_Core {    }

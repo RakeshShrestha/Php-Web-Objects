@@ -1,1 +1,0 @@
-This is text for rssview pathprefix sample

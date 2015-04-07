@@ -1,7 +1,20 @@
+
+<IfModule mod_php5.c>
+    php_value post_max_size 15M
+    php_value upload_max_filesize 12M
+    php_value memory_limit 64M
+    php_value max_execution_time 259200
+    php_value max_input_time 259200
+    php_value session.gc_maxlifetime 7200
+    php_value display_errors 0
+    php_value register_globals 0
+</IfModule>
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
-	
-    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteBase /players/
+    RewriteRule ^index\.php$ - [L]
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ index.php [QSA,L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /players/index.php [L]
 </IfModule>
