@@ -73,6 +73,7 @@ class cMain extends cController {
         $user = new user();
 
         $data['username'] = $username;
+        $data['registerusername'] = $username;
 
         if ($this->req->isPost()) {
             $db = DB::getContext();

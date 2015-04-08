@@ -39,7 +39,7 @@ if ($cont) {
 
         <div class="register">
             <?php
-            if (isset($lastinsertid)) {
+            if (isset($registerusername)) {
                 ?>
                 <div class="pop-up-title">
                     <h4 class="active">THANK YOU</h4>
