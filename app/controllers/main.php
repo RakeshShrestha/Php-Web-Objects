@@ -11,17 +11,13 @@ class cMain extends cController {
     }
 
     public function dashboard_index() {
-        $db = DB::getContext();
-
         $user_id = getCurrentUserID();
 
-        $this->display($data);
+        $this->display();
     }
 
     public function admin_index() {
-        $db = DB::getContext();
-
-        $this->display($data);
+        $this->display();
     }
 
     public function login($username = '') {
@@ -101,7 +97,7 @@ class cMain extends cController {
             $send = $mail->send();
             $this->redirect('main/register/' . $user_email);
         }
-        $data['lastinsertid'] = $username;
+
         $this->display($data, 'main/login_form');
     }
 

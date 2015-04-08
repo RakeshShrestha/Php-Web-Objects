@@ -11,7 +11,6 @@ if ($cont) {
     <?php
 }
 ?>
-
 <div class="inner-box-main sign-in-page">
     This is dashboard
 </div>

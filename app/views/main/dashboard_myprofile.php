@@ -11,7 +11,6 @@ if ($cont) {
     <?php
 }
 ?>
-
 <div class="inner-box-main sign-in-page">
     <div class="left_signin">
 
@@ -151,4 +150,3 @@ if ($cont) {
 
     });
 </script>
-

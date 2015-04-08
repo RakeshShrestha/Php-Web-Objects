@@ -1,6 +1,6 @@
 <?php
 
-function getContentByPageName($pagename = '') {
+function getContentByPageName($pagename = null) {
     $content = '';
 
     if ($pagename) {
@@ -14,7 +14,7 @@ function getContentByPageName($pagename = '') {
     return $content;
 }
 
-function getCountryList($cval = '') {
+function getCountryList($cval = null) {
     $country = array(
         'AF' => 'Afghanistan',
         'AL' => 'Albania',

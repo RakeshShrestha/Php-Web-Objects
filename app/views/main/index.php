@@ -1,2 +1,1 @@
-<h2>This is main</h2>
-<p></p>
+<h2>This is main</h2><p></p>
