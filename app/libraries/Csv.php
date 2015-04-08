@@ -1,19 +1,6 @@
 <?php
 
-/*
-  $csvmsg['content_headers'] = $csv->load(upload_file, true);
-
-  if (is_array($csvmsg['content_headers']) && (count($csvmsg['content_headers']) == 5) ) {
-    $csvmsg['content'] = $csv->load(upload_file);
-
-    foreach ($csvmsg['content'] as $key => $val) {
-        $i++;
-        $id = $val['id'];
-    }
-  }
- */
-
-class Csv {
+final class Csv {
 
     private $enclosure;
     private $delimiter;

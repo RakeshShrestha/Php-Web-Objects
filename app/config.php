@@ -17,6 +17,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 }
 
 define('SESS_TIMEOUT', 1800);
+define('SESS_TYPE', 'Session_Core');
 
 define('SYSTEM_EMAIL', 'rakesh.shrestha@gmail.com');
 

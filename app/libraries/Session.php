@@ -1,1 +1,1 @@
-<?phpclass Session extends Session_Core {    }
+<?phpclass Session {    private static $_context = null;    public static function getContext($sesstype) {        if (self::$_context === null) {            self::$_context = new $sesstype;        }        return self::$_context;    }}

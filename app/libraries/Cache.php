@@ -1,0 +1,1 @@
+<?phpclass Cache {    private static $_context = null;    public static function getContext($cachetype) {        if (self::$_context === null) {            self::$_context = new $cachetype;        }        return self::$_context;    }}
