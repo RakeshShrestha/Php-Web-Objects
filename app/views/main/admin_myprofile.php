@@ -61,9 +61,6 @@
                                     </select>
                                 </td>
                             </tr>
-
-                            <input type="hidden" id="phone" value="<?php echo $authuser->phone; ?>" name="phone">
-
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>

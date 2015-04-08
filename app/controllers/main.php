@@ -11,8 +11,6 @@ class cMain extends cController {
     }
 
     public function dashboard_index() {
-        $user_id = getCurrentUserID();
-
         $this->display();
     }
 
@@ -21,7 +19,7 @@ class cMain extends cController {
     }
 
     public function login($username = '') {
-        if (getCurrentUser()) {
+        if (getCurrentUserID()) {
             if (getCurrentUserType() == 'superadmin') {
                 $this->redirect('admin');
             } else {
@@ -62,7 +60,7 @@ class cMain extends cController {
     }
 
     public function register($username = '') {
-        if (getCurrentUser()) {
+        if (getCurrentUserID()) {
             if (getCurrentUserType() == 'superadmin') {
                 $this->redirect('admin');
             } else {
