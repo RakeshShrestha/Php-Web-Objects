@@ -234,6 +234,7 @@ class cMain extends cController {
         $data['pagename'] = 'Welcome';
 
         $db = DB::getContext();
+
         $stmt = $db->prepare("UPDATE users SET status='3' WHERE id=? ");
         $stmt->bindValue(1, $userid);
         $stmt->execute();
@@ -245,6 +246,7 @@ class cMain extends cController {
         $data['pagename'] = 'Welcome';
 
         $db = DB::getContext();
+
         $stmt = $db->prepare("UPDATE users SET status='2' WHERE id=? ");
         $stmt->bindValue(1, $userid);
         $stmt->execute();
@@ -287,7 +289,7 @@ class cMain extends cController {
 
         if ($content) {
             $data['content'] = $content->pagecontent;
-            $data['content_name'] = ucwords(str_replace(array('_', 'text'), ' ', $content->pagename));
+            $data['content_name'] = mb_ucwords(str_replace(array('_', 'text'), ' ', $content->pagename));
             $data['content_id'] = $content->id;
 
             $this->display($data);

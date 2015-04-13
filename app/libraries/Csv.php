@@ -15,7 +15,7 @@ final class Csv {
     }
 
     public function load($file, $headersonly = false) {
-        $ext = strtolower(strrchr($file, '.'));
+        $ext = mb_strtolower(mb_strrchr($file, '.'));
 
         if ($ext == '.csv' || $ext == '.txt') {
             $row = 1;
@@ -27,7 +27,7 @@ final class Csv {
             while (($data = fgetcsv($handle, 1000, $this->delimiter, $this->enclosure)) !== FALSE) {
                 if ($row == 1) {
                     foreach ($data as $key => $val)
-                        $headingTexts[] = strtolower(trim($val));
+                        $headingTexts[] = mb_strtolower(trim($val));
 
                     $this->numfields = count($headingTexts);
                 }
@@ -45,7 +45,7 @@ final class Csv {
                 if ($row > 1) {
                     foreach ($data as $key => $value) {
                         unset($data[$key]);
-                        $data[strtolower($headingTexts[$key])] = $value;
+                        $data[mb_strtolower($headingTexts[$key])] = $value;
                     }
                     $this->rows[] = $data;
                 }
@@ -65,7 +65,7 @@ final class Csv {
         $data = "";
         $data_temp = '';
         foreach ($csv_headers_array AS $val) {
-            $data_temp .= $this->enclosure . strtolower($val) . $this->enclosure . $csv_delimiter;
+            $data_temp .= $this->enclosure . mb_strtolower($val) . $this->enclosure . $csv_delimiter;
         }
         $data .= rtrim($data_temp, $csv_delimiter) . "\r\n";
 

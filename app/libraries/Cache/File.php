@@ -23,6 +23,7 @@ final class Cache_File {
 
         if (!@file_put_contents($file, $data)) {
             throw new Exception('Error writing data to cache file.');
+            return;
         }
     }
 
