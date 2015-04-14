@@ -8,7 +8,6 @@ final class Cache_File {
     public function __construct() {
         $cachedir = APP_DIR . 'logs/';
         if (!is_dir($cachedir) or ! is_writable($cachedir)) {
-            throw new Exception('Cache directory must be a valid writeable directory.');
             return;
         }
         $this->_cachedir = $cachedir;
@@ -22,7 +21,6 @@ final class Cache_File {
         }
 
         if (!@file_put_contents($file, $data)) {
-            throw new Exception('Error writing data to cache file.');
             return;
         }
     }

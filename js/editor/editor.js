@@ -7,7 +7,7 @@ function T$$$() {
     return document.all ? 1 : 0
 }
 
-TINY.editor = function() {
+TINY.editor = function () {
     var c = [], offset = -30;
     c['cut'] = [1, 'Cut', 'a', 'cut', 1];
     c['copy'] = [2, 'Copy', 'a', 'copy', 1];
@@ -126,7 +126,7 @@ TINY.editor = function() {
                 var ro = obj.resize, rs = document.createElement('div');
                 rs.className = ro.cssclass || 'resize';
                 rs.onmousedown = new Function('event', this.n + '.resize(event);return false');
-                rs.onselectstart = function() {
+                rs.onselectstart = function () {
                     return false
                 };
                 f.appendChild(rs)
@@ -161,33 +161,33 @@ TINY.editor = function() {
         }
     }
     ;
-    edit.prototype.print = function() {
+    edit.prototype.print = function () {
         this.i.contentWindow.print()
     },
-            edit.prototype.hover = function(div, pos, dir) {
+            edit.prototype.hover = function (div, pos, dir) {
                 div.style.backgroundPosition = (dir ? '34px ' : '0px ') + (pos) + 'px'
             },
-            edit.prototype.ddaction = function(dd, a) {
+            edit.prototype.ddaction = function (dd, a) {
                 var i = dd.selectedIndex, v = dd.options[i].value;
                 this.action(a, v)
             },
-            edit.prototype.action = function(cmd, val, ie) {
+            edit.prototype.action = function (cmd, val, ie) {
                 if (ie && !this.ie) {
                     alert('Your browser does not support this function.')
                 } else {
                     this.e.execCommand(cmd, 0, val || null)
                 }
             },
-            edit.prototype.insert = function(pro, msg, cmd) {
+            edit.prototype.insert = function (pro, msg, cmd) {
                 var val = prompt(pro, msg);
                 if (val != null && val != '') {
                     this.e.execCommand(cmd, 0, val)
                 }
             },
-            edit.prototype.setfont = function() {
+            edit.prototype.setfont = function () {
                 execCommand('formatblock', 0, hType)
             },
-            edit.prototype.resize = function(e) {
+            edit.prototype.resize = function (e) {
                 if (this.mv) {
                     this.freeze()
                 }
@@ -202,12 +202,12 @@ TINY.editor = function() {
                     document.addEventListener('mouseup', this.sr, 1)
                 }
             },
-            edit.prototype.move = function(e) {
+            edit.prototype.move = function (e) {
                 var pos = TINY.cursor.top(e);
                 this.i.height = parseInt(this.i.height) + pos - this.i.bcs;
                 this.i.bcs = pos
             },
-            edit.prototype.freeze = function() {
+            edit.prototype.freeze = function () {
                 if (this.ie) {
                     document.detachEvent('onmousemove', this.mv);
                     document.detachEvent('onmouseup', this.sr)
@@ -216,7 +216,7 @@ TINY.editor = function() {
                     document.removeEventListener('mouseup', this.sr, 1)
                 }
             },
-            edit.prototype.toggle = function(post, div) {
+            edit.prototype.toggle = function (post, div) {
                 if (!this.d) {
                     var v = this.t.value;
                     if (div) {
@@ -262,7 +262,7 @@ TINY.editor = function() {
                     }
                 }
             },
-            edit.prototype.post = function() {
+            edit.prototype.post = function () {
                 if (this.d) {
                     this.toggle(1)
                 }
@@ -270,9 +270,9 @@ TINY.editor = function() {
     return{edit: edit}
 }();
 
-TINY.cursor = function() {
+TINY.cursor = function () {
     return{
-        top: function(e) {
+        top: function (e) {
             return T$$$() ? window.event.clientY + document.documentElement.scrollTop + document.body.scrollTop : e.clientY + window.scrollY
         }
     }

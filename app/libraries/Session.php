@@ -1,1 +1,1 @@
-<?phpclass Session {    private static $_context = null;    public static function getContext($sesstype) {        if (self::$_context === null) {            self::$_context = new $sesstype;        }        return self::$_context;    }}
+<?phpfinal class Session {    private static $_context = null;    public static function getContext($sesstype) {        if (self::$_context === null) {            $classname = 'Session_' . $sesstype;            self::$_context = new $classname;        }        return self::$_context;    }}

@@ -1,17 +1,31 @@
 <?php
 
-function getContentByPageName($pagename = null) {
-    $content = '';
+function setCurrentUser(array $userdata = array()) {
+    Session::getContext(SESS_TYPE)->authUser = $userdata;
+}
 
+function getCurrentUser() {
+    return Session::getContext(SESS_TYPE)->authUser;
+}
+
+function getCurrentUserID() {
+    return Session::getContext(SESS_TYPE)->authUser['id'];
+}
+
+function getCurrentUserType() {
+    return Session::getContext(SESS_TYPE)->authUser['perms'];
+}
+
+function getContentByPageName($pagename = null) {
     if ($pagename) {
         $db = DB::getContext();
         $stmt = $db->prepare("SELECT pagecontent FROM pages WHERE pagename=?");
         $stmt->bindValue(1, $pagename);
         $stmt->execute();
-        $content = $stmt->fetch()->pagecontent;
+        return $stmt->fetch()->pagecontent;
     }
 
-    return $content;
+    return '';
 }
 
 function getCountryList($cval = null) {

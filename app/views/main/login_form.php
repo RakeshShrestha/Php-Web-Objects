@@ -150,7 +150,6 @@ if ($cont) {
                 $('#pass_chek').html('');
                 $('#iserror2').val(0);
             }
-
             if (passerror == 1 || $('#iserror1').val() == 1 || $('#iserror2').val() == 1) {
                 event.preventDefault();
             } else {

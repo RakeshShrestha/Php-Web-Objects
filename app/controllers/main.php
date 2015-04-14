@@ -18,7 +18,7 @@ class cMain extends cController {
         $this->display();
     }
 
-    public function login($username = '') {
+    public function login($username = null) {
         if (getCurrentUserID()) {
             if (getCurrentUserType() == 'superadmin') {
                 $this->redirect('admin');
@@ -30,7 +30,7 @@ class cMain extends cController {
         $user = new user();
 
         if ($this->req->isPost()) {
-            $username = clean($_POST['username']);
+            $username = $_POST['username'];
             $password = md5($_POST['password']);
 
             $user->select('*', 'username=?', $username);
@@ -59,7 +59,7 @@ class cMain extends cController {
         $this->display($data, 'main/login_form');
     }
 
-    public function register($username = '') {
+    public function register($username = null) {
         if (getCurrentUserID()) {
             if (getCurrentUserType() == 'superadmin') {
                 $this->redirect('admin');
@@ -74,8 +74,6 @@ class cMain extends cController {
         $data['registerusername'] = $username;
 
         if ($this->req->isPost()) {
-            $db = DB::getContext();
-
             $user->assign($_POST['data']);
             $user_email = $_POST['data']['username'];
             $userpassword = $_POST['data']['password'];
@@ -274,7 +272,7 @@ class cMain extends cController {
 
         if ($this->req->isPost()) {
             $stmt = $db->prepare("UPDATE pages SET pagecontent=? WHERE id=? ");
-            $stmt->bindValue(1, trim($_POST['dashboard_content']));
+            $stmt->bindValue(1, $_POST['dashboard_content']);
             $stmt->bindValue(2, $cid);
             $stmt->execute();
 

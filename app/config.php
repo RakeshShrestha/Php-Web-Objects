@@ -1,6 +1,6 @@
 <?php
 
-define('SITE_URI', ((strstr('https', $_SERVER['SERVER_PROTOCOL']) === false) ? 'http' : 'https') . '://' . $_SERVER['SERVER_NAME']);
+define('SITE_URI', ((mb_strstr('https', $_SERVER['SERVER_PROTOCOL']) === false) ? 'http' : 'https') . '://' . $_SERVER['SERVER_NAME']);
 define('PATH_URI', dirname($_SERVER["SCRIPT_NAME"]));
 
 define('MAIN_CONTROLLER', 'main');
@@ -17,7 +17,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 }
 
 define('SESS_TIMEOUT', 1800);
-define('SESS_TYPE', 'Session_Core');
+define('SESS_TYPE', 'Core');
 
 define('SYSTEM_EMAIL', 'rakesh.shrestha@gmail.com');
 
