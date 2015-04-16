@@ -7,23 +7,23 @@ class cMain extends cController {
     }
 
     public function index() {
-        $this->redirect('main/login');
+        $this->res->redirect('main/login');
     }
 
     public function dashboard_index() {
-        $this->display();
+        $this->res->display();
     }
 
     public function admin_index() {
-        $this->display();
+        $this->res->display();
     }
 
     public function login($username = null) {
         if (getCurrentUserID()) {
             if (getCurrentUserType() == 'superadmin') {
-                $this->redirect('admin');
+                $this->res->redirect('admin');
             } else {
-                $this->redirect('dashboard');
+                $this->res->redirect('dashboard');
             }
         }
 
@@ -36,35 +36,35 @@ class cMain extends cController {
             $user->select('*', 'username=?', $username);
 
             if (!$user->exist()) {
-                $this->redirect('main/login/' . $username, '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">LOGIN FAILED!</div>');
+                $this->res->redirect('main/login/' . $username, '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">LOGIN FAILED!</div>');
             }
             if ($password != $user->password) {
-                $this->redirect('main/login/' . $username, '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">WRONG PASSWORD!</div>');
+                $this->res->redirect('main/login/' . $username, '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">WRONG PASSWORD!</div>');
             }
             if (!$user->status == 3) {
-                $this->redirect('main/login/' . $username, '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">LOGIN FAILED!</div>');
+                $this->res->redirect('main/login/' . $username, '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">LOGIN FAILED!</div>');
             }
 
             setCurrentUser($user->get());
 
             if (getCurrentUserType() == 'superadmin') {
-                $this->redirect('admin');
+                $this->res->redirect('admin');
             } else {
-                $this->redirect('dashboard');
+                $this->res->redirect('dashboard');
             }
         }
         $data['username'] = $username;
         $data['user'] = $user;
 
-        $this->display($data, 'main/login_form');
+        $this->res->display($data, 'main/login_form');
     }
 
     public function register($username = null) {
         if (getCurrentUserID()) {
             if (getCurrentUserType() == 'superadmin') {
-                $this->redirect('admin');
+                $this->res->redirect('admin');
             } else {
-                $this->redirect('dashboard');
+                $this->res->redirect('dashboard');
             }
         }
 
@@ -92,16 +92,16 @@ class cMain extends cController {
             $mail->setMessage($message);
 
             $send = $mail->send();
-            $this->redirect('main/register/' . $user_email);
+            $this->res->redirect('main/register/' . $user_email);
         }
 
-        $this->display($data, 'main/login_form');
+        $this->res->display($data, 'main/login_form');
     }
 
     public function logout() {
         setCurrentUser();
 
-        $this->redirect('main', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">You have logged out!</div>');
+        $this->res->redirect('main', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">You have logged out!</div>');
     }
 
     public function ajax_userexist() {
@@ -180,7 +180,7 @@ class cMain extends cController {
                     $send = $mail->send();
                 }
 
-                $this->redirect('dashboard/main/myprofile', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Profile Updated Successfully</div>');
+                $this->res->redirect('dashboard/main/myprofile', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Profile Updated Successfully</div>');
             } else {
                 $data['prepassworderror'] = 'Please Enter Correct Password';
             }
@@ -188,7 +188,7 @@ class cMain extends cController {
 
         $data['authuser'] = $user;
 
-        $this->display($data);
+        $this->res->display($data);
     }
 
     public function admin_myprofile() {
@@ -207,12 +207,12 @@ class cMain extends cController {
             $user->assign($vars);
             $user->update();
 
-            $this->redirect('admin/main/myprofile', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Profile Updated Successfully</div>');
+            $this->res->redirect('admin/main/myprofile', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Profile Updated Successfully</div>');
         }
 
         $data['authuser'] = $user;
 
-        $this->display($data);
+        $this->res->display($data);
     }
 
     public function admin_users() {
@@ -225,7 +225,7 @@ class cMain extends cController {
 
         $data['users'] = $stmt->fetchAll();
 
-        $this->display($data);
+        $this->res->display($data);
     }
 
     public function admin_disable($userid = 0) {
@@ -237,7 +237,7 @@ class cMain extends cController {
         $stmt->bindValue(1, $userid);
         $stmt->execute();
 
-        $this->redirect('admin/main/users', 'User Disabled');
+        $this->res->redirect('admin/main/users', 'User Disabled');
     }
 
     public function admin_enable($userid = 0) {
@@ -249,7 +249,7 @@ class cMain extends cController {
         $stmt->bindValue(1, $userid);
         $stmt->execute();
 
-        $this->redirect('admin/main/users', 'User Enabled');
+        $this->res->redirect('admin/main/users', 'User Enabled');
     }
 
     public function admin_contentlist() {
@@ -262,7 +262,7 @@ class cMain extends cController {
 
         $data['contents'] = $stmt->fetchAll();
 
-        $this->display($data);
+        $this->res->display($data);
     }
 
     public function admin_contentedit($cid = 0) {
@@ -276,7 +276,7 @@ class cMain extends cController {
             $stmt->bindValue(2, $cid);
             $stmt->execute();
 
-            $this->redirect('admin/main/contentedit/' . $cid, '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Content Updated Successfully</div>');
+            $this->res->redirect('admin/main/contentedit/' . $cid, '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Content Updated Successfully</div>');
         }
 
         $stmt = $db->prepare("SELECT * FROM pages WHERE id=? ");
@@ -290,9 +290,9 @@ class cMain extends cController {
             $data['content_name'] = mb_ucwords(str_replace(array('_', 'text'), ' ', $content->pagename));
             $data['content_id'] = $content->id;
 
-            $this->display($data);
+            $this->res->display($data);
         } else {
-            $this->redirect('admin/main/contentlist');
+            $this->res->redirect('admin/main/contentlist');
         }
     }
 

@@ -17,11 +17,11 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 }
 
 define('SESS_TIMEOUT', 1800);
-define('SESS_TYPE', 'Core');
+define('SESS_TYPE', 'Native');
 
 define('SYSTEM_EMAIL', 'rakesh.shrestha@gmail.com');
 
-define('DEBUG', '0');
+define('DEBUG', '1');
 
 define('PAGINATE_LIMIT', '5');
 

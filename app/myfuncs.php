@@ -9,11 +9,11 @@ function getCurrentUser() {
 }
 
 function getCurrentUserID() {
-    return Session::getContext(SESS_TYPE)->authUser['id'];
+    return isset(Session::getContext(SESS_TYPE)->authUser['id']) ? Session::getContext(SESS_TYPE)->authUser['id'] : '';
 }
 
 function getCurrentUserType() {
-    return Session::getContext(SESS_TYPE)->authUser['perms'];
+    return isset(Session::getContext(SESS_TYPE)->authUser['perms']) ? Session::getContext(SESS_TYPE)->authUser['perms'] : '';
 }
 
 function getContentByPageName($pagename = null) {
