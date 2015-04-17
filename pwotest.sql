@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.4.2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2015 at 02:52 PM
+-- Generation Time: Apr 16, 2015 at 07:36 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `pages` (
-`id` bigint(20) unsigned NOT NULL,
+  `id` bigint(20) unsigned NOT NULL,
   `pagename` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `pagecontent` longtext COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
 --
 
 INSERT INTO `pages` (`id`, `pagename`, `pagecontent`, `status`) VALUES
-(1, 'register_page_text', '<p>This is register page<br /></p>', 0),
+(1, 'register_page_text', '<div style="text-align: left;"><strong>This is register page 1</strong></div>', 0),
 (2, 'dashboard_page_text', 'This is dashboard page', 0),
 (3, 'myaccount_page_text', 'This is my account page', 0);
 
@@ -49,7 +49,7 @@ INSERT INTO `pages` (`id`, `pagename`, `pagecontent`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-`id` bigint(20) unsigned NOT NULL,
+  `id` bigint(20) unsigned NOT NULL,
   `username` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `firstname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `status` tinyint(4) NOT NULL,
   `registerip` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -77,13 +77,14 @@ INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `cou
 -- Indexes for table `pages`
 --
 ALTER TABLE `pages`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -93,12 +94,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -16,10 +16,7 @@ final class Cache_Apc {
     }
 
     public function get($key) {
-        if ($this->_apcenabled) {
-            return isset($this->_lkeydata[sha1($key)]) ? $this->_lkeydata[sha1($key)] : null;
-        }
-        return null;
+        return isset($this->_lkeydata[sha1($key)]) ? $this->_lkeydata[sha1($key)] : null;
     }
 
     public function valid($key) {
