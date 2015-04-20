@@ -19,12 +19,12 @@ class cMain extends cController {
     }
 
     public function login($username = null) {
-        if (getCurrentUserID()) {
-            if (getCurrentUserType() == 'superadmin') {
-                $this->res->redirect('admin');
-            } else {
-                $this->res->redirect('dashboard');
-            }
+
+        if (getCurrentUserType() == 'superadmin') {
+            $this->res->redirect('admin');
+        }
+        if (getCurrentUserType() == 'user') {
+            $this->res->redirect('dashboard');
         }
 
         $user = new user();
@@ -49,7 +49,8 @@ class cMain extends cController {
 
             if (getCurrentUserType() == 'superadmin') {
                 $this->res->redirect('admin');
-            } else {
+            }
+            if (getCurrentUserType() == 'user') {
                 $this->res->redirect('dashboard');
             }
         }
@@ -60,12 +61,11 @@ class cMain extends cController {
     }
 
     public function register($username = null) {
-        if (getCurrentUserID()) {
-            if (getCurrentUserType() == 'superadmin') {
-                $this->res->redirect('admin');
-            } else {
-                $this->res->redirect('dashboard');
-            }
+        if (getCurrentUserType() == 'superadmin') {
+            $this->res->redirect('admin');
+        }        
+        if (getCurrentUserType() == 'user') {
+            $this->res->redirect('dashboard');
         }
 
         $user = new user();

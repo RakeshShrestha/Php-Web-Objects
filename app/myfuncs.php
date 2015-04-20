@@ -1,6 +1,6 @@
 <?php
 
-function setCurrentUser(array $userdata = array()) {
+function setCurrentUser(array &$userdata = array()) {
     Session::getContext(SESS_TYPE)->authUser = $userdata;
 }
 
