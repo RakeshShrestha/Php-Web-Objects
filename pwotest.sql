@@ -51,7 +51,7 @@ INSERT INTO `pages` (`id`, `pagename`, `pagecontent`, `status`) VALUES
 CREATE TABLE IF NOT EXISTS `sessions` (
   `id` char(32) COLLATE utf8_unicode_ci NOT NULL,
   `data` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `last_accessed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `last_accessed` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
