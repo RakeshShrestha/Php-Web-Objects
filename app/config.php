@@ -21,7 +21,7 @@ define('SESS_TYPE', 'Database');
 
 define('SYSTEM_EMAIL', 'rakesh.shrestha@gmail.com');
 
-define('DEBUG', '0');
+define('DEBUG', '1');
 
 define('PAGINATE_LIMIT', '5');
 
