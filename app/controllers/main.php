@@ -19,7 +19,6 @@ class cMain extends cController {
     }
 
     public function login($username = null) {
-
         if (getCurrentUserType() == 'superadmin') {
             $this->res->redirect('admin');
         }

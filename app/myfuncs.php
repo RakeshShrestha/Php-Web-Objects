@@ -1,19 +1,21 @@
 <?php
 
 function setCurrentUser(array &$userdata = array()) {
-    Session::getContext(SESS_TYPE)->authUser = $userdata;
+    Session::getContext(SESS_TYPE)->set('authUser', $userdata);
 }
 
 function getCurrentUser() {
-    return Session::getContext(SESS_TYPE)->authUser;
+    return Session::getContext(SESS_TYPE)->get('authUser');
 }
 
 function getCurrentUserID() {
-    return isset(Session::getContext(SESS_TYPE)->authUser['id']) ? Session::getContext(SESS_TYPE)->authUser['id'] : '';
+    $authUser = getCurrentUser();
+    return isset($authUser['id']) ? $authUser['id'] : '';
 }
 
 function getCurrentUserType() {
-    return isset(Session::getContext(SESS_TYPE)->authUser['perms']) ? Session::getContext(SESS_TYPE)->authUser['perms'] : '';
+    $authUser = getCurrentUser();
+    return isset($authUser['perms']) ? $authUser['perms'] : '';
 }
 
 function getContentByPageName($pagename = null) {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2015 at 07:36 PM
+-- Generation Time: Apr 20, 2015 at 05:50 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -45,6 +45,22 @@ INSERT INTO `pages` (`id`, `pagename`, `pagecontent`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `id` char(32) COLLATE utf8_unicode_ci NOT NULL,
+  `data` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `last_accessed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -77,6 +93,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `cou
 -- Indexes for table `pages`
 --
 ALTER TABLE `pages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`);
 
 --
