@@ -1,6 +1,6 @@
 Simple PHP MVC framework.
 
-php >= 5.3
+php >= 5.4
 
 Password Values
 admin@test.com = Mytest123
