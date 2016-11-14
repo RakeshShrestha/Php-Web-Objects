@@ -1,6 +1,6 @@
 <?php
 
-class QRGenerate {
+final class QRGenerate {
 
     private $_size;
     private $_data;
@@ -9,7 +9,7 @@ class QRGenerate {
     private $_marginInRows;
 
     public function __construct($data = '', $size = '300', $encoding = 'UTF-8', $errorCorrectionLevel = 'L', $marginInRows = 4, $debug = false) {
-        $this->_data = urlencode($data);
+        $this->_data = url_encode($data);
         $this->_size = ($size > 100 && $size < 800) ? $size : 300;
         $this->_encoding = ($encoding == 'Shift_JIS' || $encoding == 'ISO-8859-1' || $encoding == 'UTF-8') ? $encoding : 'UTF-8';
         $this->_errorCorrectionLevel = ($errorCorrectionLevel == 'L' || $errorCorrectionLevel == 'M' || $errorCorrectionLevel == 'Q' || $errorCorrectionLevel == 'H') ? $errorCorrectionLevel : 'L';

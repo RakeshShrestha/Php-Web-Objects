@@ -83,7 +83,7 @@ if ($cont) {
                     </p>
                     <p>
                         <label>Confirm Password</label>
-                        <input type="password" required="required" class="" id="password2" name="data[re_password]">
+                        <input type="password" required="required" class="" id="password2" name="re_password">
                         <span id="pass_chek"></span>
                     </p>
                     <p>

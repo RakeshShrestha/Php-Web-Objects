@@ -1,6 +1,6 @@
 <?php
 
-class cMain extends cController {
+final class cMain extends cController {
 
     public function __construct() {
         parent::__construct();
@@ -62,7 +62,7 @@ class cMain extends cController {
     public function register($username = null) {
         if (getCurrentUserType() == 'superadmin') {
             $this->res->redirect('admin');
-        }        
+        }
         if (getCurrentUserType() == 'user') {
             $this->res->redirect('dashboard');
         }
@@ -286,7 +286,7 @@ class cMain extends cController {
 
         if ($content) {
             $data['content'] = $content->pagecontent;
-            $data['content_name'] = mb_ucwords(str_replace(array('_', 'text'), ' ', $content->pagename));
+            $data['content_name'] = mb_ucwords(mb_str_replace(array('_', 'text'), ' ', $content->pagename));
             $data['content_id'] = $content->id;
 
             $this->res->display($data);

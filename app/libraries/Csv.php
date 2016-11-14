@@ -27,7 +27,7 @@ final class Csv {
             while (($data = fgetcsv($handle, 1000, $this->delimiter, $this->enclosure)) !== FALSE) {
                 if ($row == 1) {
                     foreach ($data as $key => $val)
-                        $headingTexts[] = mb_strtolower(trim($val));
+                        $headingTexts[] = mb_strtolower(mb_trim($val));
 
                     $this->numfields = count($headingTexts);
                 }
