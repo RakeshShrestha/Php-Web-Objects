@@ -48,7 +48,7 @@ INSERT INTO `pages` (`id`, `pagename`, `pagecontent`, `status`) VALUES
 -- Table structure for table `sessions`
 --
 
-CREATE TABLE IF NOT EXISTS `sessions` (
+CREATE TABLE IF NOT EXISTS `sys_sessions` (
   `id` char(32) COLLATE utf8_unicode_ci NOT NULL,
   `data` longtext COLLATE utf8_unicode_ci NOT NULL,
   `last_accessed` int(11) NOT NULL
@@ -98,7 +98,7 @@ ALTER TABLE `pages`
 --
 -- Indexes for table `sessions`
 --
-ALTER TABLE `sessions`
+ALTER TABLE `sys_sessions`
   ADD PRIMARY KEY (`id`);
 
 --
