@@ -24,4 +24,4 @@ define('SESS_TYPE', 'Database');
 
 ini_set('apc.cache_by_default', 0);
 
-define('SYSTEM_TIMEZONE', 'UTC');
+define('SYSTEM_TIMEZONE', 'Asia/Kathmandu');

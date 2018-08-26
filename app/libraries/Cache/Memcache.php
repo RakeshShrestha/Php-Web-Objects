@@ -7,15 +7,15 @@ final class Cache_Memcache {
     private $_lkeydata = array();
 
     public function __construct() {
-        $_memcache_enabled = extension_loaded('memcache');
-        if ($_memcache_enabled) {
+        $this->_memcache_enabled = extension_loaded('memcache');
+        if ($this->_memcache_enabled) {
             $this->_memcache = new Memcache();
             $this->_memcache->addserver(key(unserialize(MC_SERVER)), current(unserialize(MC_SERVER)));
         }
     }
 
     public function set($key, $data, $ttl = 3600) {
-        if ($_memcache_enabled) {
+        if ($this->_memcache_enabled) {
             return $this->_memcache->set(sha1($key), array($data, time(), $ttl), 0, $ttl);
         }
     }
@@ -25,7 +25,7 @@ final class Cache_Memcache {
     }
 
     public function valid($key) {
-        if ($_memcache_enabled) {
+        if ($this->_memcache_enabled) {
             $data = $this->_memcache->get(sha1($key));
             if ($data) {
                 $this->_lkeydata[sha1($key)] = (is_array($data)) ? $data[0] : false;

@@ -1,6 +1,6 @@
 <?php
 
-final class cMain extends cController {
+final class cMain extends cAdminController {
 
     public function __construct() {
         parent::__construct();
