@@ -185,6 +185,44 @@ ul.duser{
 .dashboard_contents table td{
     padding:10px;
 }
+
+.pagination{
+    margin:0;
+    padding:0;
+}
+
+.pagination li{
+    display: inline;
+    padding: 6px 10px 6px 10px;
+    border: 1px solid #ddd;
+    margin-right: -1px;
+    font: 13px/20px Arial, Helvetica, sans-serif;
+    background: #FFFFFF;
+}
+
+.pagination li a{
+    text-decoration:none;
+    color: rgb(89, 141, 235);
+}
+
+.pagination li.first {
+    border-radius: 5px 0px 0px 5px;
+}
+
+.pagination li.last {
+    border-radius: 0px 5px 5px 0px;
+}
+
+.pagination li:hover{
+    background: #EEE;
+}
+
+.pagination li.current {
+    background: #89B3CC;
+    border: 1px solid #89B3CC;
+    color: #FFFFFF;
+}
+
 .flogin1{
     color: #FFFFFF;
     float: right;
