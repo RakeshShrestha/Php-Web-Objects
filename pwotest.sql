@@ -9,6 +9,7 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+SET GLOBAL event_scheduler = ON;
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -89,6 +90,10 @@ INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `cou
 -- Indexes for dumped tables
 --
 
+CREATE EVENT cleansession
+    ON SCHEDULE EVERY 30 MINUTE
+    DO
+        DELETE FROM sys_sessions WHERE last_accessed < timestamp(now()-1805);
 --
 -- Indexes for table `pages`
 --
