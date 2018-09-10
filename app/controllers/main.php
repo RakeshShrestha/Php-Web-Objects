@@ -145,7 +145,7 @@ final class cMain extends cAdminController {
 
             $msend = 0;
             if (md5($vars['prepassword']) == $user->password) {
-                $user->assign($vars);
+                $user->assign($vars, true);
                 $user->update();
 
                 if ($opassword != $user->password) {
@@ -203,7 +203,7 @@ final class cMain extends cAdminController {
                 $vars['password'] = $user->password;
             }
 
-            $user->assign($vars);
+            $user->assign($vars, true);
             $user->update();
 
             $this->res->redirect('admin/main/myprofile', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Profile Updated Successfully</div>');

@@ -1,6 +1,7 @@
 <?php
 
-define('SITE_TITLE', 'Regional Urban Development Project (RUDP)');
-define('PATH_PREFIX', serialize(array('admin', 'manage', 'ajax')));
+define('SITE_TITLE', 'Mytest Site');
+define('PATH_PREFIX', serialize(array('admin', 'dashboard', 'manage', 'ajax')));
 define('SYSTEM_EMAIL', 'rakesh.shrestha@gmail.com');
-define('PAGINATE_LIMIT', '20');
+define('PAGINATE_PUBLICLIMIT', '15');
+define('PAGINATE_LIMIT', '30');
