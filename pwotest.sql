@@ -93,7 +93,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `cou
 CREATE EVENT cleansession
     ON SCHEDULE EVERY 30 MINUTE
     DO
-        DELETE FROM sys_sessions WHERE last_accessed < timestamp(now()-1805);
+        DELETE FROM sys_sessions WHERE last_accessed < (UNIX_TIMESTAMP(now())-1805);
 --
 -- Indexes for table `pages`
 --
