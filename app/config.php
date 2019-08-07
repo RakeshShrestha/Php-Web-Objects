@@ -2,10 +2,10 @@
 
 if ($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DEBUG', '1');
-    define('DB_CON', serialize(array('mysql', 'localhost', 'root', '', 'pwotest')));
+    define('DB_CON', serialize(array('mysql', 'localhost', 'root', '', 'rudp')));
 } else {
     define('DEBUG', '0');
-    define('DB_CON', serialize(array('mysql', 'localhost', 'root', '', 'pwotest')));
+    define('DB_CON', serialize(array('mysql', 'localhost', 'root', '', 'rudp')));
 }
 
 $siteuri = ((mb_strstr('https', $_SERVER['SERVER_PROTOCOL']) === false) ? 'http' : 'https') . '://' . $_SERVER['SERVER_NAME'];
@@ -25,7 +25,7 @@ define('MAIN_CONTROLLER', 'home');
 define('MAIN_METHOD', 'index');
 
 define('SESS_TIMEOUT', 1800);
-define('SESS_TYPE', 'Database');
+define('SESS_TYPE', 'Native');
 
 ini_set('apc.cache_by_default', 0);
 

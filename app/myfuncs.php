@@ -54,6 +54,25 @@ function getContentByPageName($pagename = null) {
     return '';
 }
 
+function distance($lat1, $lon1, $lat2, $lon2, $unit) {
+    $theta = $lon1 - $lon2;
+    $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+    $dist = acos($dist);
+    $dist = rad2deg($dist);
+    $miles = $dist * 60 * 1.1515;
+    $unit = strtoupper($unit);
+
+    if ($unit == "K") {
+        return ($miles * 1.609344);
+    } else if ($unit == "N") {
+        return ($miles * 0.8684);
+    } else if ($unit == "MTR") {
+        return ($miles * 0.000621371192);
+    } else {
+        return $miles;
+    }
+}
+
 function getCountryList($cval = null) {
     $country = array(
         'AF' => 'Afghanistan',
@@ -330,11 +349,11 @@ function getCountryList($cval = null) {
 
 function getDocsList($cval = null) {
     $docscat = array(
-        '11' => 'NPR',
+        '11' => 'MPR',
         '12' => 'QPR',
         '13' => 'Annual',
-        '21' => 'Social',
-        '22' => 'Environment',
+        '21' => 'Social Safeguard',
+        '22' => 'Environment Safeguard',
         '31' => 'Planning Report',
         '32' => 'EIA, IEE'
     );
@@ -346,7 +365,21 @@ function getDocsList($cval = null) {
     }
 }
 
-function paginate($current_page, $total_records, $total_pages, $page_url) {
+function getDocsStatus($cval = null) {
+    $docscat = array(
+        '0' => 'Submitted',
+        '1' => 'Approved',
+        '2' => 'Archived'
+    );
+
+    if ($cval != null) {
+        return isset($docscat[$cval]) ? $docscat[$cval] : '';
+    } else {
+        return $docscat;
+    }
+}
+
+function paginate($current_page, $total_records, $total_pages, $page_url, $append = "") {
     $item_per_page = PAGINATE_LIMIT;
     $page_url = getUrl($page_url);
     $pagination = '';
@@ -360,11 +393,11 @@ function paginate($current_page, $total_records, $total_pages, $page_url) {
 
         if ($current_page > 1) {
             $previous_link = $current_page - 1;
-            $pagination .= '<li class="first"><a href="' . $page_url . '/1" title="First">&laquo;</a></li>'; //first link
-            $pagination .= '<li><a href="' . $page_url . '/' . $previous_link . '" title="Previous">&lt;</a></li>'; //previous link
+            $pagination .= '<li class="first"><a href="' . $page_url . '/1' . $append . '" title="First">&laquo;</a></li>'; //first link
+            $pagination .= '<li><a href="' . $page_url . '/' . $previous_link . $append . '" title="Previous">&lt;</a></li>'; //previous link
             for ($i = ($current_page - 2); $i < $current_page; $i++) { //Create left-hand side links
                 if ($i > 0) {
-                    $pagination .= '<li><a href="' . $page_url . '/' . $i . '">' . $i . '</a></li>';
+                    $pagination .= '<li><a href="' . $page_url . '/' . $i . $append . '">' . $i . '</a></li>';
                 }
             }
             $first_link = false; //set first link to false
@@ -380,13 +413,13 @@ function paginate($current_page, $total_records, $total_pages, $page_url) {
 
         for ($i = $current_page + 1; $i < $right_links; $i++) { //create right-hand side links
             if ($i <= $total_pages) {
-                $pagination .= '<li><a href="' . $page_url . '/' . $i . '">' . $i . '</a></li>';
+                $pagination .= '<li><a href="' . $page_url . '/' . $i . $append . '">' . $i . '</a></li>';
             }
         }
         if ($current_page < $total_pages) {
             $next_link = $current_page + 1;
-            $pagination .= '<li><a href="' . $page_url . '/' . $next_link . '" >&gt;</a></li>'; //next link
-            $pagination .= '<li class="last"><a href="' . $page_url . '/' . $total_pages . '" title="Last">&raquo;</a></li>'; //last link
+            $pagination .= '<li><a href="' . $page_url . '/' . $next_link . $append . '" >&gt;</a></li>'; //next link
+            $pagination .= '<li class="last"><a href="' . $page_url . '/' . $total_pages . $append . '" title="Last">&raquo;</a></li>'; //last link
         }
 
         $pagination .= '</ul>';

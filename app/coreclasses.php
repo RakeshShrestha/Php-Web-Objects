@@ -1,12 +1,14 @@
 <?php
 
 require_once APP_DIR . 'myconfig.php';
-require_once APP_DIR . 'php5.php';
+require_once APP_DIR . 'php7.php';
 require_once APP_DIR . 'corefuncs.php';
 require_once APP_DIR . 'myfuncs.php';
 
 unset($_REQUEST);
 unset($_GET);
+
+$_POST = array_map_recursive("cleanHtml", $_POST);
 
 spl_autoload_extensions('.php');
 spl_autoload_register(array('Loader', 'load'));
@@ -54,10 +56,6 @@ final class Request {
 
     public function getMethod() {
         return mb_strtolower($this->_method);
-    }
-
-    public function getCurrentPage() {
-        return $this->_pathprefix . "/" . mb_strtolower($this->_controller) . "/" . mb_strtolower($this->_method);
     }
 
     public function getHeaders() {
@@ -154,7 +152,7 @@ final class Response {
     }
 
     public static function addSplashMsg($msg = null) {
-        $sess = Session::getContext(SESS_TYPE)->set('splashmessage', $msg);
+        Session::getContext(SESS_TYPE)->set('splashmessage', $msg);
     }
 
     public static function getSplashMsg() {

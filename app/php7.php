@@ -48,12 +48,11 @@ if (!function_exists('url_decode')) {
 
 if (!function_exists('array_map_recursive')) {
 
-    function array_map_recursive($fn, $arr) {
-        $rarr = array();
+    function array_map_recursive($fn, &$arr) {
         foreach ($arr as $k => $v) {
-            $rarr[$k] = is_array($v) ? array_map_recursive($fn, $v) : $fn($v);
+            $arr[$k] = is_array($v) ? array_map_recursive($fn, $v) : $fn($v);
         }
-        return $rarr;
+        return $arr;
     }
 
 }
