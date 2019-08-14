@@ -42,35 +42,15 @@ function getCurrentUserType() {
     return isset($authUser['perms']) ? $authUser['perms'] : '';
 }
 
-function getContentByPageName($pagename = null) {
-    if ($pagename) {
-        $db = DB::getContext();
-        $stmt = $db->prepare("SELECT pagecontent FROM cms_pages WHERE pagename=?");
-        $stmt->bindValue(1, $pagename);
-        $stmt->execute();
-        return $stmt->fetch()->pagecontent;
-    }
-
-    return '';
+function addSplashMsg($msg = null) {
+    Session::getContext(SESS_TYPE)->set('splashmessage', $msg);
 }
 
-function distance($lat1, $lon1, $lat2, $lon2, $unit) {
-    $theta = $lon1 - $lon2;
-    $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-    $dist = acos($dist);
-    $dist = rad2deg($dist);
-    $miles = $dist * 60 * 1.1515;
-    $unit = strtoupper($unit);
-
-    if ($unit == "K") {
-        return ($miles * 1.609344);
-    } else if ($unit == "N") {
-        return ($miles * 0.8684);
-    } else if ($unit == "MTR") {
-        return ($miles * 0.000621371192);
-    } else {
-        return $miles;
-    }
+function getSplashMsg() {
+    $sess = Session::getContext(SESS_TYPE);
+    $msg = $sess->get('splashmessage');
+    $sess->set('splashmessage', null);
+    return $msg;
 }
 
 function getCountryList($cval = null) {
@@ -376,6 +356,65 @@ function getDocsStatus($cval = null) {
         return isset($docscat[$cval]) ? $docscat[$cval] : '';
     } else {
         return $docscat;
+    }
+}
+
+function my_mime_content_type($filename) {
+
+    $mime_types = array(
+        'txt' => 'text/plain',
+        'htm' => 'text/html',
+        'html' => 'text/html',
+        'php' => 'text/html',
+        'css' => 'text/css',
+        'js' => 'application/javascript',
+        'json' => 'application/json',
+        'xml' => 'application/xml',
+        'swf' => 'application/x-shockwave-flash',
+        'flv' => 'video/x-flv',
+        // images
+        'png' => 'image/png',
+        'jpe' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'jpg' => 'image/jpeg',
+        'gif' => 'image/gif',
+        'bmp' => 'image/bmp',
+        'ico' => 'image/vnd.microsoft.icon',
+        'tiff' => 'image/tiff',
+        'tif' => 'image/tiff',
+        'svg' => 'image/svg+xml',
+        'svgz' => 'image/svg+xml',
+        // archives
+        'zip' => 'application/zip',
+        'rar' => 'application/x-rar-compressed',
+        'exe' => 'application/x-msdownload',
+        'msi' => 'application/x-msdownload',
+        'cab' => 'application/vnd.ms-cab-compressed',
+        // audio/video
+        'mp3' => 'audio/mpeg',
+        'qt' => 'video/quicktime',
+        'mov' => 'video/quicktime',
+        // adobe
+        'pdf' => 'application/pdf',
+        'psd' => 'image/vnd.adobe.photoshop',
+        'ai' => 'application/postscript',
+        'eps' => 'application/postscript',
+        'ps' => 'application/postscript',
+        // ms office
+        'doc' => 'application/msword',
+        'rtf' => 'application/rtf',
+        'xls' => 'application/vnd.ms-excel',
+        'ppt' => 'application/vnd.ms-powerpoint',
+        // open office
+        'odt' => 'application/vnd.oasis.opendocument.text',
+        'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
+    );
+
+    $ext = strtolower(array_pop(explode('.', $filename)));
+    if (array_key_exists($ext, $mime_types)) {
+        return $mime_types[$ext];
+    } else {
+        return 'application/octet-stream';
     }
 }
 

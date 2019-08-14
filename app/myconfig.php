@@ -8,3 +8,6 @@ define('SYSTEM_EMAIL2', '');
 
 define('PAGINATE_PUBLICLIMIT', '15');
 define('PAGINATE_LIMIT', '10');
+
+list($dbtype, $host, $user, $pass, $dbname) = unserialize(DB_CON);
+define("DBmyNAME", $dbname);

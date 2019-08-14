@@ -3,14 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/rakesh/app/libraries/DB.php</file>
-            <file>file:/D:/xampp/htdocs/rakesh/app/php5.php</file>
-            <file>file:/D:/xampp/htdocs/rakesh/app/myfuncs.php</file>
-            <file>file:/D:/xampp/htdocs/rakesh/app/corefuncs.php</file>
-            <file>file:/D:/xampp/htdocs/rakesh/app/config.php</file>
-            <file>file:/D:/xampp/htdocs/rakesh/app/coreclasses.php</file>
-            <file>file:/D:/xampp/htdocs/rakesh/index.php</file>
-            <file>file:/D:/xampp/htdocs/rakesh/app/myconfig.php</file>
+            <file>file:/D:/xampp/htdocs/rakesh/phpwebobjects/app/controllers/admincontroller.php</file>
         </group>
     </open-files>
 </project-private>

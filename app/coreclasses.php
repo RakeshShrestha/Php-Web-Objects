@@ -1,7 +1,6 @@
 <?php
 
 require_once APP_DIR . 'myconfig.php';
-require_once APP_DIR . 'php7.php';
 require_once APP_DIR . 'corefuncs.php';
 require_once APP_DIR . 'myfuncs.php';
 
@@ -116,17 +115,9 @@ final class Response {
         header("HTTP/1.0 " . $this->_get_status_message($status));
     }
 
-    public function setHeader($name, $value) {
-        
-    }
-
-    public function setCookie($name, $value) {
-        
-    }
-
     public function redirect($path = null, $alertmsg = null) {
         if ($alertmsg) {
-            $this->addSplashMsg($alertmsg);
+            addSplashMsg($alertmsg);
         }
 
         $redir = getUrl($path);
@@ -135,31 +126,12 @@ final class Response {
         exit;
     }
 
-    public function setContentType($contentType) {
-        
-    }
-
-    public function setFile($file) {
-        
-    }
-
     public function display(array &$data = array(), $viewname = null) {
         View::display($data, $viewname);
     }
 
     public function assign(array &$data = array(), $viewname = null) {
         return View::assign($data, $viewname);
-    }
-
-    public static function addSplashMsg($msg = null) {
-        Session::getContext(SESS_TYPE)->set('splashmessage', $msg);
-    }
-
-    public static function getSplashMsg() {
-        $sess = Session::getContext(SESS_TYPE);
-        $msg = $sess->get('splashmessage');
-        $sess->set('splashmessage', null);
-        return $msg;
     }
 
     private function _get_status_message($code) {
@@ -188,15 +160,11 @@ final class View {
             $viewname = mb_strtolower($req->getController() . '/' . $req->getMethod());
         }
 
-        if (!isset($vars['layout'])) {
-            $playout = 'layouts/' . $req->getPathPrefix() . 'layout';
+        if (isset($vars['layout'])) {
+            $playout = 'layouts/' . $vars['layout'];
             $vars['mainregion'] = self::assign($vars, $viewname);
         } else {
-            if ($vars['layout']) {
-                $playout = $vars['layout'];
-            } else {
-                $playout = $viewname;
-            }
+            $playout = $viewname;
         }
 
         if (is_array($vars)) {
