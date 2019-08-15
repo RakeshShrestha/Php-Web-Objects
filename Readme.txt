@@ -1,3 +1,4 @@
 Simple PHP MVC framework.
 
-fully caompatible with php 7 version
+pdo mysql extension
+mbstring 

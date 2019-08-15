@@ -24,8 +24,6 @@ try {
 
     $data['message'] = DEBUG ? $e : '';
 
-    $data['layout'] = false;
-
     $response->display($data, 'errors/exception');
     exit;
 }

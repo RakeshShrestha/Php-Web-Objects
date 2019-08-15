@@ -1,29 +1,5 @@
 <?php
 
-// deprecated
-if (!function_exists('str_rot13')) {
-
-    function str_rot13($str) {
-        $from = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $to = 'nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM';
-
-        return strtr($str, $from, $to);
-    }
-
-}
-
-// deprecated
-if (!function_exists('str_rotr13')) {
-
-    function str_rotr13($str) {
-        $from = 'nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM';
-        $to = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-        return strtr($str, $from, $to);
-    }
-
-}
-
 function setCurrentUser(array &$userdata = array()) {
     Session::getContext(SESS_TYPE)->set('authUser', $userdata);
 }
@@ -324,38 +300,6 @@ function getCountryList($cval = null) {
         return isset($country[$cval]) ? $country[$cval] : '';
     } else {
         return $country;
-    }
-}
-
-function getDocsList($cval = null) {
-    $docscat = array(
-        '11' => 'MPR',
-        '12' => 'QPR',
-        '13' => 'Annual',
-        '21' => 'Social Safeguard',
-        '22' => 'Environment Safeguard',
-        '31' => 'Planning Report',
-        '32' => 'EIA, IEE'
-    );
-
-    if ($cval) {
-        return isset($docscat[$cval]) ? $docscat[$cval] : '';
-    } else {
-        return $docscat;
-    }
-}
-
-function getDocsStatus($cval = null) {
-    $docscat = array(
-        '0' => 'Submitted',
-        '1' => 'Approved',
-        '2' => 'Archived'
-    );
-
-    if ($cval != null) {
-        return isset($docscat[$cval]) ? $docscat[$cval] : '';
-    } else {
-        return $docscat;
     }
 }
 

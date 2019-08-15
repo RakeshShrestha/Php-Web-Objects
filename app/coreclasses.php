@@ -1,13 +1,14 @@
 <?php
 
 require_once APP_DIR . 'myconfig.php';
+require_once APP_DIR . 'php7.php';
 require_once APP_DIR . 'corefuncs.php';
 require_once APP_DIR . 'myfuncs.php';
 
 unset($_REQUEST);
 unset($_GET);
 
-$_POST = array_map_recursive("cleanHtml", $_POST);
+$_POST = array_walk_recursive($_POST, "cleanHtml");
 
 spl_autoload_extensions('.php');
 spl_autoload_register(array('Loader', 'load'));
