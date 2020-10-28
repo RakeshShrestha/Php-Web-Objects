@@ -1,6 +1,11 @@
-Simple PHP MVC framework version 0.6
+Simple PHP framework.
+
+php >= 5.4
 
 pdo mysql extension
-mbstring 
+mbstring
 
-Version 1.0 is expected to be released on June 2021 with sample ajax based application
+Password Values
+
+superadmin@gmail.com = Mytest123
+user@gmail.com = Mytest123
