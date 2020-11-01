@@ -1,29 +1,5 @@
 <?php
 
-// deprecated
-if (!function_exists('str_rot13')) {
-
-    function str_rot13($str) {
-        $from = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $to = 'nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM';
-
-        return strtr($str, $from, $to);
-    }
-
-}
-
-// deprecated
-if (!function_exists('str_rotr13')) {
-
-    function str_rotr13($str) {
-        $from = 'nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM';
-        $to = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-        return strtr($str, $from, $to);
-    }
-
-}
-
 function setCurrentUser(array &$userdata = array()) {
     Session::getContext(SESS_TYPE)->set('authUser', $userdata);
 }

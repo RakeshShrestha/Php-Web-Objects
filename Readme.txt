@@ -1,9 +1,15 @@
 Simple PHP framework.
 
-php >= 5.4
+php >= 7.1
 
 pdo mysql extension
 mbstring
+
+Optional
+Memcached extension
+
+About PHP opcache
+PHP 7 has a built-in opcache. 
 
 Password Values
 
