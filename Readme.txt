@@ -8,6 +8,8 @@ mbstring
 Optional
 Memcached extension
 
+old memcache is for PHP5 only
+
 About PHP opcache
 PHP 7 has a built-in opcache. 
 
