@@ -1,20 +1,26 @@
 <?php
 
-final class Csv {
+final class Csv
+{
 
     private $enclosure;
+
     private $delimiter;
+
     private $rows;
+
     private $numfields;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->enclosure = "\"";
         $this->delimiter = ",";
         $this->rows = array();
         $this->numfields = 0;
     }
 
-    public function load($file, $headersonly = false) {
+    public function load($file, $headersonly = false)
+    {
         $ext = mb_strtolower(mb_strrchr($file, '.'));
 
         if ($ext == '.csv' || $ext == '.txt') {
@@ -49,7 +55,7 @@ final class Csv {
                     }
                     $this->rows[] = $data;
                 }
-                $row++;
+                $row ++;
             }
             fclose($handle);
         }
@@ -57,14 +63,15 @@ final class Csv {
         return $this->rows;
     }
 
-    public function write($csv_delimiter, array $csv_headers_array, array $csv_write_res) {
-        if (!isset($csv_delimiter)) {
+    public function write($csv_delimiter, array $csv_headers_array, array $csv_write_res)
+    {
+        if (! isset($csv_delimiter)) {
             $csv_delimiter = $this->delimiter;
         }
 
         $data = "";
         $data_temp = '';
-        foreach ($csv_headers_array AS $val) {
+        foreach ($csv_headers_array as $val) {
             $data_temp .= $this->enclosure . mb_strtolower($val) . $this->enclosure . $csv_delimiter;
         }
         $data .= rtrim($data_temp, $csv_delimiter) . "\r\n";
@@ -73,7 +80,7 @@ final class Csv {
 
         $data = "";
         $data_temp = '';
-        foreach ($csv_write_res AS $val) {
+        foreach ($csv_write_res as $val) {
             $data_temp = '';
             foreach ($val as $val2) {
                 $data_temp .= $this->enclosure . $val2 . $this->enclosure . $csv_delimiter;
@@ -83,5 +90,4 @@ final class Csv {
         }
         echo $data;
     }
-
 }

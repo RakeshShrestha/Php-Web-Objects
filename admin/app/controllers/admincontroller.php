@@ -1,11 +1,14 @@
 <?php
 
-abstract class cAdminController {
+abstract class cAdminController
+{
 
     public $req = null;
+
     public $res = null;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->req = req();
         $this->res = res();
 
@@ -20,5 +23,4 @@ abstract class cAdminController {
             $this->res->redirect('login', 'Invalid Access');
         }
     }
-
 }

@@ -1,17 +1,21 @@
 <?php
 
-final class cUsers extends cAdminController {
+final class cUsers extends cAdminController
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function index() {
+    public function index()
+    {
         $data['pagetitle'] = SITE_TITLE;
         $this->res->display($data);
     }
 
-    public function manage_index() {
+    public function manage_index()
+    {
         $data['pagename'] = 'Users';
 
         $db = DB::getContext();
@@ -24,7 +28,8 @@ final class cUsers extends cAdminController {
         $this->res->display($data);
     }
 
-    public function manage_add($id = 0) {
+    public function manage_add($id = 0)
+    {
         $data['pagename'] = 'Users';
 
         $user = new user($id);
@@ -53,7 +58,8 @@ final class cUsers extends cAdminController {
         $this->res->display($data);
     }
 
-    public function manage_edit($id = 0) {
+    public function manage_edit($id = 0)
+    {
         $data['pagename'] = 'Users';
 
         $user = new user($id);
@@ -82,7 +88,8 @@ final class cUsers extends cAdminController {
         $this->res->display($data);
     }
 
-    public function manage_disable($userid = 0) {
+    public function manage_disable($userid = 0)
+    {
         $data['pagename'] = 'Users';
 
         $db = DB::getContext();
@@ -93,7 +100,8 @@ final class cUsers extends cAdminController {
         $this->res->redirect('admin/users', 'User Disabled');
     }
 
-    public function manage_enable($userid = 0) {
+    public function manage_enable($userid = 0)
+    {
         $data['pagename'] = 'Users';
 
         $db = DB::getContext();
@@ -103,5 +111,4 @@ final class cUsers extends cAdminController {
 
         $this->res->redirect('admin/users', 'User Enabled');
     }
-
 }

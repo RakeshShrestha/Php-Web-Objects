@@ -1,29 +1,39 @@
 <?php
 
-class model {
+class model
+{
 
     protected $db = null;
+
     private $_rs = array();
+
     private $_pk;
+
     private $_table;
 
-    public function __construct($table = null, $pk = 'id') {
+    public function __construct($table = null, $pk = 'id')
+    {
         $this->_pk = $pk;
         $this->_table = $table;
         $this->db = DB::getContext();
     }
 
-    public function __set($key, $val) {
+    public function __set($key, $val)
+    {
         $this->_rs[$key] = $val;
     }
 
-    public function __get($key) {
+    public function __get($key)
+    {
         return isset($this->_rs[$key]) ? $this->_rs[$key] : '';
     }
 
-    public function select($selectwhat = '*', $wherewhat = null, $bindings = null) {
+    public function select($selectwhat = '*', $wherewhat = null, $bindings = null)
+    {
         if (is_scalar($bindings)) {
-            $bindings = mb_trim($bindings) ? array($bindings) : array();
+            $bindings = mb_trim($bindings) ? array(
+                $bindings
+            ) : array();
         }
         $sql = 'SELECT ' . $selectwhat . ' FROM ' . $this->_table;
         if ($wherewhat) {
@@ -34,7 +44,7 @@ class model {
 
         $i = 0;
         foreach ($bindings as $v) {
-            $stmt->bindValue(++$i, $v);
+            $stmt->bindValue(++ $i, $v);
         }
 
         $stmt->execute();
@@ -46,7 +56,8 @@ class model {
         }
     }
 
-    public function insert() {
+    public function insert()
+    {
         $_pk = $this->_pk;
 
         $s1 = $s2 = '';
@@ -66,7 +77,7 @@ class model {
 
         foreach ($this->_rs as $k => $v) {
             if ($k != $_pk || $v) {
-                $stmt->bindValue(++$i, is_scalar($v) ? $v : serialize($v) );
+                $stmt->bindValue(++ $i, is_scalar($v) ? $v : serialize($v));
             }
         }
 
@@ -75,7 +86,8 @@ class model {
         return $this->db->lastInsertId();
     }
 
-    public function update() {
+    public function update()
+    {
         $s = '';
 
         foreach ($this->_rs as $k => $v) {
@@ -91,15 +103,16 @@ class model {
         $i = 0;
 
         foreach ($this->_rs as $k => $v) {
-            $stmt->bindValue(++$i, is_scalar($v) ? $v : serialize($v));
+            $stmt->bindValue(++ $i, is_scalar($v) ? $v : serialize($v));
         }
 
-        $stmt->bindValue(++$i, $this->_rs[$this->_pk]);
+        $stmt->bindValue(++ $i, $this->_rs[$this->_pk]);
 
         return $stmt->execute();
     }
 
-    public function delete() {
+    public function delete()
+    {
         $sql = 'DELETE FROM ' . $this->_table . ' WHERE ' . $this->_pk . '=?';
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(1, $this->_rs[$this->_pk]);
@@ -107,7 +120,8 @@ class model {
         return $stmt->execute();
     }
 
-    public function exist($checkdb = false) {
+    public function exist($checkdb = false)
+    {
         if ((int) $this->{$this->_pk} >= 1) {
             return 1;
         }
@@ -120,11 +134,13 @@ class model {
         return 0;
     }
 
-    public function get() {
+    public function get()
+    {
         return $this->_rs;
     }
 
-    public function assign(array &$arr = array(), $chechfield = false) {
+    public function assign(array &$arr = array(), $chechfield = false)
+    {
         foreach ($arr as $key => $val) {
             if ($chechfield) {
                 if (isset($this->$key)) {
@@ -135,5 +151,4 @@ class model {
             }
         }
     }
-
 }

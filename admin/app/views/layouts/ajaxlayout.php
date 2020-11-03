@@ -1,3 +1,2 @@
 <?php
-
-echo isset($mainregion) ? $mainregion : '' ?>
+echo isset($mainregion) ? $mainregion : ''?>

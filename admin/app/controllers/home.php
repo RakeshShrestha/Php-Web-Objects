@@ -1,18 +1,22 @@
 <?php
 
-final class cHome extends cController {
+final class cHome extends cController
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function index() {
+    public function index()
+    {
         $data['pagetitle'] = SITE_TITLE;
 
         $this->res->display($data);
     }
 
-    public function manage_index() {
+    public function manage_index()
+    {
         if (getCurrentUserType() != 'superadmin') {
             $this->res->redirect('login', 'Invalid Access');
         }
@@ -20,7 +24,8 @@ final class cHome extends cController {
         $this->res->display($data);
     }
 
-    public function dashboard_index() {
+    public function dashboard_index()
+    {
         if (getCurrentUserType() != 'admin') {
             $this->res->redirect('login', 'Invalid Access');
         }
@@ -28,7 +33,8 @@ final class cHome extends cController {
         $this->res->display($data);
     }
 
-    public function download($id = 1) {
+    public function download($id = 1)
+    {
         $mdoc = new model('cms_docs');
         $mdoc->select('*', 'id=?', $id);
 
@@ -49,7 +55,8 @@ final class cHome extends cController {
         readfile("uploads/documents/" . $readfilename);
     }
 
-    public function feedback() {
+    public function feedback()
+    {
         if ($this->req->isPost()) {
             $mail = new Email();
             $mail->setFrom(SYSTEM_EMAIL, 'Feedback Form');
@@ -71,5 +78,4 @@ final class cHome extends cController {
             echo 'Feedback sent successfully';
         }
     }
-
 }

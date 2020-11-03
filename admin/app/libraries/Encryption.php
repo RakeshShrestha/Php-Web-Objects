@@ -1,17 +1,34 @@
 <?php
 
-final class Encryption {
+final class Encryption
+{
 
     private $_skey = "ThisIsCOOL";
 
-    public function safe_b64encode($string) {
+    public function safe_b64encode($string)
+    {
         $data = base64_encode($string);
-        $data = mb_str_replace(array('+', '/', '='), array('-', '_', ''), $data);
+        $data = mb_str_replace(array(
+            '+',
+            '/',
+            '='
+        ), array(
+            '-',
+            '_',
+            ''
+        ), $data);
         return $data;
     }
 
-    public function safe_b64decode($string) {
-        $data = mb_str_replace(array('-', '_'), array('+', '/'), $string);
+    public function safe_b64decode($string)
+    {
+        $data = mb_str_replace(array(
+            '-',
+            '_'
+        ), array(
+            '+',
+            '/'
+        ), $string);
         $mod4 = mb_strlen($data) % 4;
         if ($mod4) {
             $data .= substr('====', $mod4);
@@ -19,8 +36,9 @@ final class Encryption {
         return base64_decode($data);
     }
 
-    public function encode($value) {
-        if (!$value) {
+    public function encode($value)
+    {
+        if (! $value) {
             return false;
         }
         $text = $value;
@@ -30,8 +48,9 @@ final class Encryption {
         return mb_trim($this->safe_b64encode($crypttext));
     }
 
-    public function decode($value) {
-        if (!$value) {
+    public function decode($value)
+    {
+        if (! $value) {
             return false;
         }
         $crypttext = $this->safe_b64decode($value);
@@ -40,5 +59,4 @@ final class Encryption {
         $decrypttext = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $this->_skey, $crypttext, MCRYPT_MODE_ECB, $iv);
         return mb_trim($decrypttext);
     }
-
 }

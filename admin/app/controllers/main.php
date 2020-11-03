@@ -1,17 +1,21 @@
 <?php
 
-final class cMain extends cAdminController {
+final class cMain extends cAdminController
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function index() {
+    public function index()
+    {
         $data['pagetitle'] = SITE_TITLE;
         $this->res->display($data);
     }
 
-    public function manage_myprofile() {
+    public function manage_myprofile()
+    {
         $data['pagename'] = 'Welcome';
 
         $user = new user(getCurrentUserID());
@@ -36,7 +40,8 @@ final class cMain extends cAdminController {
         $this->res->display($data);
     }
 
-    public function dashboard_myprofile() {
+    public function dashboard_myprofile()
+    {
         $data['pagename'] = 'Welcome';
 
         $user = new user(getCurrentUserID());
@@ -61,10 +66,10 @@ final class cMain extends cAdminController {
         $this->res->display($data);
     }
 
-    public function logout() {
+    public function logout()
+    {
         setCurrentUser();
 
         $this->res->redirect('login', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">You have logged out!</div>');
     }
-
 }

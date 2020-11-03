@@ -1,45 +1,70 @@
 <?php
 
-final class Session_Database {
+final class Session_Database
+{
 
     private $_db = null;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->_db = DB::getContext();
-        session_set_save_handler(
-                array(&$this, "_open"), array(&$this, "_close"), array(&$this, "_read"), array(&$this, "_write"), array(&$this, "_destroy"), array(&$this, "_gc")
-        );
+        session_set_save_handler(array(
+            &$this,
+            "_open"
+        ), array(
+            &$this,
+            "_close"
+        ), array(
+            &$this,
+            "_read"
+        ), array(
+            &$this,
+            "_write"
+        ), array(
+            &$this,
+            "_destroy"
+        ), array(
+            &$this,
+            "_gc"
+        ));
         @session_start();
     }
 
-    public function set($key, $value) {
+    public function set($key, $value)
+    {
         $_SESSION[$key] = $value;
     }
 
-    public function get($key) {
+    public function get($key)
+    {
         return isset($_SESSION[$key]) ? $_SESSION[$key] : '';
     }
 
-    public function getId() {
+    public function getId()
+    {
         return session_id();
     }
 
-    public function delete($key) {
+    public function delete($key)
+    {
         unset($_SESSION[$key]);
     }
 
-    public function _open() {
+    public function _open()
+    {
         if ($this->_db) {
             return true;
         }
         return false;
     }
 
-    public function _close() {
+    public function _close()
+    {
         return true;
     }
 
-    public function _read($id) {
+    public function _read($id)
+    {
         $stmt = $this->_db->prepare('SELECT data FROM sys_sessions WHERE id = ? ');
         $stmt->bindValue(1, $id);
         $stmt->execute();
@@ -52,7 +77,8 @@ final class Session_Database {
         }
     }
 
-    public function _write($id, $data) {
+    public function _write($id, $data)
+    {
         $access = time();
 
         $stmt = $this->_db->prepare('REPLACE INTO sys_sessions VALUES (?, ?, ?) ');
@@ -66,7 +92,8 @@ final class Session_Database {
         return false;
     }
 
-    public function _destroy($id) {
+    public function _destroy($id)
+    {
         $stmt = $this->_db->prepare('DELETE FROM sys_sessions WHERE id = ? ');
         $stmt->bindValue(1, $id);
 
@@ -80,7 +107,8 @@ final class Session_Database {
         return false;
     }
 
-    public function _gc($max = 0) {
+    public function _gc($max = 0)
+    {
         $old = time() - $max;
 
         $stmt = $this->_db->prepare('DELETE * FROM sys_sessions WHERE last_accessed < ? ');
@@ -92,8 +120,9 @@ final class Session_Database {
         return false;
     }
 
-    private function _verifyInactivity($maxtime = 0) {
-        if (!$this->get('activity_time')) {
+    private function _verifyInactivity($maxtime = 0)
+    {
+        if (! $this->get('activity_time')) {
             $this->set('activity_time', time());
         }
 
@@ -103,5 +132,4 @@ final class Session_Database {
             $this->set('activity_time', time());
         }
     }
-
 }

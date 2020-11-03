@@ -1,12 +1,16 @@
 <?php
 
-final class Cache_File {
+final class Cache_File
+{
 
     private $_cachedir = '';
+
     private $_validdir = false;
+
     private $_lkeydata = array();
 
-    public function __construct() {
+    public function __construct()
+    {
         $cachedir = APP_DIR . 'logs/';
         if (is_dir($cachedir) && is_writable($cachedir)) {
             $this->_validdir = true;
@@ -14,9 +18,13 @@ final class Cache_File {
         $this->_cachedir = $cachedir;
     }
 
-    public function set($key, $data, $ttl = 180) {
+    public function set($key, $data, $ttl = 180)
+    {
         if ($this->_validdir) {
-            $data = serialize(array(time() + $ttl, $data));
+            $data = serialize(array(
+                time() + $ttl,
+                $data
+            ));
             $file = $this->_cachedir . sha1($key);
             if (file_exists($file)) {
                 unlink($file);
@@ -26,11 +34,13 @@ final class Cache_File {
         }
     }
 
-    public function get($key) {
+    public function get($key)
+    {
         return isset($this->_lkeydata[sha1($key)]) ? $this->_lkeydata[sha1($key)] : null;
     }
 
-    public function valid($key) {
+    public function valid($key)
+    {
         if ($this->_validdir) {
             $file1 = glob($this->_cachedir . sha1($key));
             array_shift($file1);
@@ -50,5 +60,4 @@ final class Cache_File {
         }
         return false;
     }
-
 }

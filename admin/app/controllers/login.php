@@ -1,12 +1,15 @@
 <?php
 
-final class cLogin extends cController {
+final class cLogin extends cController
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function index() {
+    public function index()
+    {
         $data = array();
 
         $data['username'] = '';
@@ -27,7 +30,7 @@ final class cLogin extends cController {
 
             $user->select('*', 'username=?', $username);
 
-            if (!$user->exist()) {
+            if (! $user->exist()) {
                 $this->res->redirect('login/', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">LOGIN FAILED!</div>');
             }
             if ($password != $user->password) {
@@ -49,13 +52,14 @@ final class cLogin extends cController {
             $data['username'] = $username;
             $data['user'] = $user;
 
-            exit;
+            exit();
         }
 
         $this->res->display($data, 'main/login_form');
     }
 
-    public function forgotpass() {
+    public function forgotpass()
+    {
         $data = array();
 
         $data['username'] = '';
@@ -75,7 +79,7 @@ final class cLogin extends cController {
 
             $user->select('*', 'username=?', $username);
 
-            if (!$user->exist()) {
+            if (! $user->exist()) {
                 $this->res->redirect('login/forgotpass', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">User does not exit!</div>');
             }
             if ($user->status == 2) {
@@ -93,12 +97,11 @@ final class cLogin extends cController {
 
             $mail->setMessage($message);
 
-            //print_r($message);
+            // print_r($message);
             $mail->send();
             $this->res->redirect('login/forgotpass', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Your password has been mailed to you!</div>');
         }
 
         $this->res->display($data, 'main/login_forgotpass');
     }
-
 }
