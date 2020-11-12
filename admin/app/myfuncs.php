@@ -1,4 +1,5 @@
 <?php
+/**
 # Copyright Rakesh Shrestha (rakesh.shrestha@gmail.com)
 # All rights reserved.
 #
@@ -7,7 +8,7 @@
 # met:
 #
 # Redistributions must retain the above copyright notice.
-
+*/
 
 function setCurrentUser(array &$userdata = array())
 {

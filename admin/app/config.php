@@ -1,4 +1,5 @@
 <?php
+/**
 # Copyright Rakesh Shrestha (rakesh.shrestha@gmail.com)
 # All rights reserved.
 #
@@ -7,6 +8,7 @@
 # met:
 #
 # Redistributions must retain the above copyright notice.
+*/
 
 if ($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DEBUG', '1');
