@@ -10,7 +10,7 @@
 
 define('APP_DIR', realpath(dirname(__FILE__)) . '/app/');
 
-require_once APP_DIR . 'config.php';
+require_once APP_DIR . 'config/config.php';
 
 if (DEBUG) {
     error_reporting(E_ALL);

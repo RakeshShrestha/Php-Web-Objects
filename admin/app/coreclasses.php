@@ -10,7 +10,7 @@
 # Redistributions must retain the above copyright notice.
 */
 
-require_once APP_DIR . 'myconfig.php';
+require_once APP_DIR . 'config/myconfig.php';
 require_once APP_DIR . 'myclasses.php';
 require_once APP_DIR . 'corefuncs.php';
 require_once APP_DIR . 'myfuncs.php';
