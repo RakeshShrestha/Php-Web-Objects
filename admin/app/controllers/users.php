@@ -29,8 +29,7 @@ final class cUsers extends cAdminController
         $data['pagename'] = 'Users';
 
         $user = new user();
-
-	$data['users'] = $user->select('*');
+		$data['users'] = $user->select('*');
 
         $this->res->display($data);
     }
