@@ -33,8 +33,6 @@ final class DB
             self::$_context->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$_context->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
         } catch (PDOException $ex) {
-            echo $ex;
-            exit();
             throw $ex;
         }
 
