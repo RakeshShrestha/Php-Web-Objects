@@ -28,10 +28,9 @@ final class cUsers extends cAdminController
     {
         $data['pagename'] = 'Users';
 
-        $db = DB::getContext();
-        
         $user = new user();
-		$data['users'] = $user->select('*');
+
+	$data['users'] = $user->select('*');
 
         $this->res->display($data);
     }
@@ -44,9 +43,9 @@ final class cUsers extends cAdminController
 
         if ($this->req->isPost()) {
             $vars = $_POST;
-			
-			$vars['password'] = md5($vars['password']);
-			$vars['remarks'] = $vars['password'];
+
+            $vars['password'] = md5($vars['password']);
+            $vars['remarks'] = $vars['password'];
 			
             unset($vars['confirm_password']);
             unset($vars['iserror1']);
@@ -97,9 +96,9 @@ final class cUsers extends cAdminController
         $data['pagename'] = 'Users';
 
         $user = new user($userid);
-		$user->status = 2;
-		$user->update();
-
+        $user->status = 2;
+       	$user->update();
+		
         $this->res->redirect('admin/users', 'User Disabled');
     }
 
@@ -108,8 +107,8 @@ final class cUsers extends cAdminController
         $data['pagename'] = 'Users';
 
         $user = new user($userid);
-		$user->status = 1;
-		$user->update();
+        $user->status = 1;
+       	$user->update();
 
         $this->res->redirect('admin/users', 'User Enabled');
     }
