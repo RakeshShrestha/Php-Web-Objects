@@ -30,8 +30,8 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
     )));
 }
 
-$siteuri = ((mb_strstr('https', $_SERVER['SERVER_PROTOCOL']) === false) ? 'http' : 'https') . '://' . $_SERVER['SERVER_NAME'];
-if ($_SERVER["SERVER_PORT"] != 80) {
+$siteuri = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'];
+if ($_SERVER["SERVER_PORT"] != 80 && $_SERVER["SERVER_PORT"] != 443) {
     $siteuri .= ":" . $_SERVER["SERVER_PORT"];
 }
 
