@@ -1,15 +1,15 @@
 <?php
-/**
-# Copyright Rakesh Shrestha (rakesh.shrestha@gmail.com)
-# All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are
-# met:
-#
-# Redistributions must retain the above copyright notice.
-*/
 
+/**
+ # Copyright Rakesh Shrestha (rakesh.shrestha@gmail.com)
+ # All rights reserved.
+ #
+ # Redistribution and use in source and binary forms, with or without
+ # modification, are permitted provided that the following conditions are
+ # met:
+ #
+ # Redistributions must retain the above copyright notice.
+ */
 final class cUsers extends cAdminController
 {
 
@@ -29,7 +29,7 @@ final class cUsers extends cAdminController
         $data['pagename'] = 'Users';
 
         $user = new user();
-		$data['users'] = $user->select('*');
+        $data['users'] = $user->select('*');
 
         $this->res->display($data);
     }
@@ -45,7 +45,7 @@ final class cUsers extends cAdminController
 
             $vars['password'] = md5($vars['password']);
             $vars['remarks'] = $vars['password'];
-			
+
             unset($vars['confirm_password']);
             unset($vars['iserror1']);
             unset($vars['iserror2']);
@@ -96,8 +96,8 @@ final class cUsers extends cAdminController
 
         $user = new user($userid);
         $user->status = 2;
-       	$user->update();
-		
+        $user->update();
+
         $this->res->redirect('admin/users', 'User Disabled');
     }
 
@@ -107,7 +107,7 @@ final class cUsers extends cAdminController
 
         $user = new user($userid);
         $user->status = 1;
-       	$user->update();
+        $user->update();
 
         $this->res->redirect('admin/users', 'User Enabled');
     }

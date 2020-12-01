@@ -1,4 +1,4 @@
-Simple PHP framework.
+Simple PHP OOP-MVC framework.
 
 php >= 7.1
 
