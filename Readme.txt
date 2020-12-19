@@ -1,5 +1,9 @@
-Simple PHP OOP-MVC framework.
+Simple/Easy to learn and use PHP MVC framework.
 
+### Screenshot of the dashbaord
+![Dashbaord Visual](https://raw.githubusercontent.com/RakeshShrestha/Php-Web-Objects/master/screen/dashboard1.webp)
+
+### PHP Requirement
 php >= 7.1
 
 pdo mysql extension
@@ -36,6 +40,3 @@ user@gmail.com = Mytest123
 1. Use Views for querying information
 2. Use Stored Procedures for complex queries
 3. Use Triggers
-
-### Screenshot of the dashbaord
-![Dashbaord Visual](screen/dashboard1.webp?raw=true)
