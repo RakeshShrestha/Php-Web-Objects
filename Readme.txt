@@ -38,4 +38,4 @@ user@gmail.com = Mytest123
 3. Use Triggers
 
 ### Screenshot of the dashbaord
-![Dashbaord Visual](./screen/dashboard1.webp)
+![Dashbaord Visual](screen/dashboard1.webp?raw=true)
