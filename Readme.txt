@@ -38,6 +38,4 @@ user@gmail.com = Mytest123
 3. Use Triggers
 
 ### Screenshot of the dashbaord
-<img height="234" width="500" title="Dashbaord Visual" src="screen/dashboard1.webp" />
-
-
+![Dashbaord Visual](./screen/dashboard1.webp)
