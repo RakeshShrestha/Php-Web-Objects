@@ -1,24 +1,23 @@
 Simple/Easy to learn and use PHP MVC framework.
 =======
 
-### PHP Requirement
-php >= 7.1
+<img src="https://github.com/RakeshShrestha/Php-Web-Objects/blob/master/screen/dashboard1?raw=true" alt="Dashboard" />
 
-pdo mysql extension
-mbstring
+### PHP Requirement
+
+1. php >= 7.1
+2. pdo mysql extension
+3. mbstring
 
 Optional
-Memcached extension
-
-old memcache is for PHP5 only
+1. Memcached extension -- old memcache is for PHP5 only
 
 About PHP opcache
-PHP 7 has a built-in opcache. 
+1. PHP 7 has a built-in opcache. 
 
 Password Values
-
-superadmin@gmail.com = Mytest123
-user@gmail.com = Mytest123
+1. superadmin@gmail.com = Mytest123
+2. user@gmail.com = Mytest123
 
 ### Features
 1. Clean/Lightweight/Modern PHP MVC Framework
