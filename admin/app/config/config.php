@@ -9,6 +9,10 @@
  #
  # Redistributions must retain the above copyright notice.
  */
+ini_set('apc.cache_by_default', 0);
+
+define('SYSTEM_TIMEZONE', 'Asia/Kathmandu');
+
 if ($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DEBUG', '1');
     define('DB_CON', serialize(array(
@@ -16,7 +20,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
         'localhost',
         'root',
         '',
-        'mypwo'
+        'pwotest'
     )));
 } else {
     define('DEBUG', '0');
@@ -37,11 +41,17 @@ if ($_SERVER["SERVER_PORT"] != 80 && $_SERVER["SERVER_PORT"] != 443) {
 define('SITE_URI', $siteuri);
 
 define('PATH_URI', dirname($_SERVER["SCRIPT_NAME"]));
+define('SITE_TITLE', 'PWO');
+define('PATH_PREFIX', serialize(array(
+    'dashboard',
+    'manage',
+    'ajax'
+)));
 
-define('CONT_DIR', APP_DIR . 'controllers/');
-define('LIBS_DIR', APP_DIR . 'libraries/');
-define('VIEW_DIR', APP_DIR . 'views/');
-define('MODS_DIR', APP_DIR . 'models/');
+define('FIREBASE_API_KEY', '');
+
+define('SYSTEM_EMAIL', '');
+define('SYSTEM_EMAIL2', '');
 
 define('MAIN_CONTROLLER', 'home');
 define('MAIN_METHOD', 'index');
@@ -49,6 +59,10 @@ define('MAIN_METHOD', 'index');
 define('SESS_TIMEOUT', 1800);
 define('SESS_TYPE', 'Native');
 
-ini_set('apc.cache_by_default', 0);
+define('PAGINATE_PUBLICLIMIT', '1500');
+define('PAGINATE_LIMIT', '10');
 
-define('SYSTEM_TIMEZONE', 'Asia/Kathmandu');
+define('CONT_DIR', APP_DIR . 'controllers/');
+define('LIBS_DIR', APP_DIR . 'libraries/');
+define('VIEW_DIR', APP_DIR . 'views/');
+define('MODS_DIR', APP_DIR . 'models/');
