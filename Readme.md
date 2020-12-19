@@ -24,7 +24,7 @@ Password Values
 2. Multi DB support via PDO 
 3. Very lightweight database and model class -- CRUD Operation
 4. Good Dashbaord with visual elements
-5. Authetication
+5. Authentication
 6. Uri to controller mapping
 7. Very lightweight template engine
 8. PHP native Views
