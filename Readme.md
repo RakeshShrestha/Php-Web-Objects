@@ -1,7 +1,7 @@
 Simple/Easy to learn and use PHP MVC framework.
 =======
 
-<img src="https://github.com/RakeshShrestha/Php-Web-Objects/blob/master/screen/dashboard1?raw=true" alt="Dashboard" />
+<img src="https://github.com/RakeshShrestha/Php-Web-Objects/blob/master/screen/dashboard1.png?raw=true" alt="Dashboard" />
 
 ### PHP Requirement
 
