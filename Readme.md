@@ -33,7 +33,7 @@ Password Values
 11. Builtin XSS security
 12. Builtin SQL injection security
 
-### Database Recommended Best Practises when using ph web objects framework
+### Database Recommended Best Practises when using php web objects framework
 1. Use Views for querying information
 2. Use Stored Procedures for complex queries
 3. Use Triggers
