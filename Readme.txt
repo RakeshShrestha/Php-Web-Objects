@@ -1,7 +1,8 @@
 Simple/Easy to learn and use PHP MVC framework.
+=======
 
 ### Screenshot of the dashbaord
-![Dashbaord Visual](https://raw.githubusercontent.com/RakeshShrestha/Php-Web-Objects/master/screen/dashboard1.png)
+<img src="https://github.com/RakeshShrestha/Php-Web-Objects/blob/master/screen/dashboard1.png?raw=true" alt="Dashbaord Visual" />
 
 ### PHP Requirement
 php >= 7.1
