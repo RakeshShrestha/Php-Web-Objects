@@ -519,11 +519,11 @@ function paginate($current_page, $total_records, $total_pages, $page_url)
     return $pagination; // return pagination links
 }
 
-function array_map_recursive($fn, $arr)
+function array_map_recursive($arr, $fn)
 {
     $rarr = array();
     foreach ($arr as $k => $v) {
-        $rarr[$k] = is_array($v) ? array_map_recursive($fn, $v) : $fn($v);
+        $rarr[$k] = is_array($v) ? array_map_recursive($v, $fn) : $fn($v);
     }
     return $rarr;
 }

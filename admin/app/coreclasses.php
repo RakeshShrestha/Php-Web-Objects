@@ -16,6 +16,9 @@ require_once APP_DIR . 'corefuncs.php';
 unset($_REQUEST);
 unset($_GET);
 
+/* XSS Prevention */
+$_POST = array_map_recursive($_POST, "cleanHtml");
+
 spl_autoload_extensions('.php');
 spl_autoload_register(array(
     'Loader',
