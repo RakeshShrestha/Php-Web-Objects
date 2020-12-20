@@ -12,7 +12,9 @@
  */
 define('APP_DIR', realpath(dirname(__FILE__)) . '/app/');
 
-require_once APP_DIR . 'config/config.php';
+require_once APP_DIR . 'coreclasses.php';
+
+date_default_timezone_set(SYSTEM_TIMEZONE);
 
 if (DEBUG) {
     error_reporting(E_ALL);
@@ -20,12 +22,8 @@ if (DEBUG) {
     error_reporting(0);
 }
 
-require_once APP_DIR . 'coreclasses.php';
-
-date_default_timezone_set(SYSTEM_TIMEZONE);
-
-$request = Request::getContext();
-$response = Response::getContext();
+$request = req();
+$response = res();
 
 try {
     Application::run($request, $response);

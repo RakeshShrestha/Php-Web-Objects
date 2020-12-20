@@ -10,6 +10,43 @@
  #
  # Redistributions must retain the above copyright notice.
  */
+function req()
+{
+    return Request::getContext();
+}
+
+function res()
+{
+    return Response::getContext();
+}
+
+function db()
+{
+    return DB::getContext();
+}
+
+function setCurrentUser(array &$userdata = array())
+{
+    Session::getContext(SESS_TYPE)->set('authUser', $userdata);
+}
+
+function getCurrentUser()
+{
+    return Session::getContext(SESS_TYPE)->get('authUser');
+}
+
+function getCurrentUserID()
+{
+    $authUser = getCurrentUser();
+    return isset($authUser['id']) ? $authUser['id'] : '';
+}
+
+function getCurrentUserType()
+{
+    $authUser = getCurrentUser();
+    return isset($authUser['perms']) ? $authUser['perms'] : '';
+}
+
 function getUrl($path = null)
 {
     if (PATH_URI != '/') {
@@ -31,16 +68,6 @@ function cleanHtml($html = null)
         return in_array(mb_strtolower($matches[1]), $allowed_tags) ? $matches[0] : '';
     }, $html);
     return $rhtml;
-}
-
-function req()
-{
-    return Request::getContext();
-}
-
-function res()
-{
-    return Response::getContext();
 }
 
 function getRequestIP()
@@ -107,28 +134,6 @@ function url_encode($string = null)
 function url_decode($string = null)
 {
     return utf8_decode(urldecode($string));
-}
-
-function setCurrentUser(array &$userdata = array())
-{
-    Session::getContext(SESS_TYPE)->set('authUser', $userdata);
-}
-
-function getCurrentUser()
-{
-    return Session::getContext(SESS_TYPE)->get('authUser');
-}
-
-function getCurrentUserID()
-{
-    $authUser = getCurrentUser();
-    return isset($authUser['id']) ? $authUser['id'] : '';
-}
-
-function getCurrentUserType()
-{
-    $authUser = getCurrentUser();
-    return isset($authUser['perms']) ? $authUser['perms'] : '';
 }
 
 function my_mime_content_type($filename)

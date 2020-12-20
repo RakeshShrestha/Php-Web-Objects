@@ -10,6 +10,7 @@
  #
  # Redistributions must retain the above copyright notice.
  */
+require_once APP_DIR . 'config/config.php';
 require_once APP_DIR . 'corefuncs.php';
 
 unset($_REQUEST);
@@ -189,8 +190,6 @@ final class Response
         405 => "Try HTTP GET.",
         500 => "Something went horribly wrong."
     );
-
-    private $_headers = [];
 
     public static function getContext()
     {

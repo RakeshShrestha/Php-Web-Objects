@@ -25,7 +25,7 @@ class model
     {
         $this->_pk = $pk;
         $this->_table = $table;
-        $this->db = DB::getContext();
+        $this->db = db();
     }
 
     public function __set($key, $val)
