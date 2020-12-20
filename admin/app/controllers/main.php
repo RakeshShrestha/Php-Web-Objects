@@ -21,7 +21,7 @@ final class cMain extends cAdminController
     public function index()
     {
         $data['pagetitle'] = SITE_TITLE;
-        $this->res->display($data);
+        $this->res->display($data, 'main/login_form');
     }
 
     public function manage_myprofile()
