@@ -30,19 +30,14 @@ function cache()
     Cache::getContext(CACHE_TYPE);
 }
 
-function sess()
-{
-    Session::getContext(SESS_TYPE);
-}
-
 function setCurrentUser(array &$userdata = array())
 {
-    sess()->set('authUser', $userdata);
+    Session::getContext(SESS_TYPE)->set('authUser', $userdata);
 }
 
 function getCurrentUser()
 {
-    return sess()->get('authUser');
+    return Session::getContext(SESS_TYPE)->get('authUser');
 }
 
 function getCurrentUserID()
