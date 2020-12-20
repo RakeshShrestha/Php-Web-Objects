@@ -45,17 +45,17 @@ define('SITE_TITLE', 'PWO');
 define('PATH_PREFIX', serialize(array(
     'dashboard',
     'manage',
-    'ajax'
+    'api'
 )));
 
 define('FIREBASE_API_KEY', '');
 
 define('SYSTEM_EMAIL', '');
-define('SYSTEM_EMAIL2', '');
 
 define('MAIN_CONTROLLER', 'home');
 define('MAIN_METHOD', 'index');
 
+define('CACHE_TYPE', 'Memcached');
 define('SESS_TIMEOUT', 1800);
 define('SESS_TYPE', 'Native');
 

@@ -25,14 +25,24 @@ function db()
     return DB::getContext();
 }
 
+function cache()
+{
+    Cache::getContext(CACHE_TYPE);
+}
+
+function sess()
+{
+    Session::getContext(SESS_TYPE);
+}
+
 function setCurrentUser(array &$userdata = array())
 {
-    Session::getContext(SESS_TYPE)->set('authUser', $userdata);
+    sess()->set('authUser', $userdata);
 }
 
 function getCurrentUser()
 {
-    return Session::getContext(SESS_TYPE)->get('authUser');
+    return sess()->get('authUser');
 }
 
 function getCurrentUserID()
@@ -63,7 +73,29 @@ function clean($string = null)
 
 function cleanHtml($html = null)
 {
-    $allowed_tags = array();
+    $allowed_tags = array(
+        'a',
+        'em',
+        'strong',
+        'cite',
+        'code',
+        'ul',
+        'ol',
+        'li',
+        'dl',
+        'dt',
+        'dd',
+        'table',
+        'tr',
+        'td',
+        'tbody',
+        'thead',
+        'th',
+        'br',
+        'b',
+        'i',
+        'p'
+    );
     $rhtml = preg_replace_callback('/<\/?([^>\s]+)[^>]*>/i', function ($matches) use (&$allowed_tags) {
         return in_array(mb_strtolower($matches[1]), $allowed_tags) ? $matches[0] : '';
     }, $html);

@@ -97,7 +97,7 @@ final class cLogin extends cController
             }
 
             $mail = new Email();
-            $mail->setFrom(SYSTEM_EMAIL, 'RUDP System');
+            $mail->setFrom(SYSTEM_EMAIL, 'System');
             $mail->setTO($user->username, $user->firstname);
             $mail->setSubject('Forgot Password');
 
@@ -107,7 +107,6 @@ final class cLogin extends cController
 
             $mail->setMessage($message);
 
-            // print_r($message);
             $mail->send();
             $this->res->redirect('login/forgotpass', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Your password has been mailed to you!</div>');
         }
