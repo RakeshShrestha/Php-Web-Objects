@@ -49,6 +49,7 @@ define('PATH_PREFIX', serialize(array(
 )));
 
 define('FIREBASE_API_KEY', '');
+define('SECRET_KEY', 'PHpisVeryCOOLDear1234##Isitso');
 
 define('SYSTEM_EMAIL', '');
 
