@@ -28,8 +28,8 @@ Password Values
 6. Uri to controller mapping
 7. Very lightweight template engine
 8. PHP native Views
-9. Zero thirdparty dependencies, add extra libraries only when you need it
-10. Useful builtin libraries for mail, firebase messaging, memcached, encryption and QR code
+9. Zero dependencies, add extra libraries only when you need it
+10. Useful builtin libraries for mail, firebase messaging, memcached, encryption, pagination, jwt api and QR code
 11. Builtin XSS security
 12. Builtin SQL injection security
 

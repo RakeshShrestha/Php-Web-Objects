@@ -10,7 +10,7 @@
  #
  # Redistributions must retain the above copyright notice.
  */
-final class cMain extends cAdminController
+final class cProfile extends cAuthController
 {
 
     public function __construct()
@@ -19,67 +19,21 @@ final class cMain extends cAdminController
     }
 
     public function index()
+    {}
+
+    public function api_info()
     {
-        $data['pagetitle'] = SITE_TITLE;
-        $this->res->display($data, 'main/login_form');
-    }
-
-    public function manage_myprofile()
-    {
-        $data['pagename'] = 'Welcome';
-
-        $user = new user(getCurrentUserID());
-
-        if ($this->req->isPost()) {
-            $vars = $_POST;
-            if ($vars['password']) {
-                $vars['password'] = md5($vars['password']);
-                $vars['remarks'] = $vars['password'];
-            } else {
-                $vars['password'] = $user->password;
-            }
-
-            $user->assign($vars, true);
-            $user->update();
-
-            $this->res->redirect('manage/main/myprofile', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Profile Updated Successfully</div>');
-        }
-
-        $data['authuser'] = $user;
-
-        $this->res->display($data);
-    }
-
-    public function dashboard_myprofile()
-    {
-        $data['pagename'] = 'Welcome';
-
-        $user = new user(getCurrentUserID());
-
-        if ($this->req->isPost()) {
-            $vars = $_POST;
-            if ($vars['password']) {
-                $vars['password'] = md5($vars['password']);
-                $vars['remarks'] = $vars['password'];
-            } else {
-                $vars['password'] = $user->password;
-            }
-
-            $user->assign($vars, true);
-            $user->update();
-
-            $this->res->redirect('dashboard/main/myprofile', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">Profile Updated Successfully</div>');
-        }
-
-        $data['authuser'] = $user;
-
-        $this->res->display($data);
-    }
-
-    public function logout()
-    {
-        setCurrentUser();
-
-        $this->res->redirect('login', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">You have logged out!</div>');
+        echo json_encode(array(
+            'code' => 20000,
+            'data' => array(
+                'userid' => $this->user->userid,
+                'introduction' => $this->user->introduction,
+                'name' => $this->user->name,
+                'avatar' => '',
+                'usertype' => $this->user->usertype,
+                'reportunit' => $this->user->reportunit,
+                'roles' => $this->user->roles
+            )
+        ));
     }
 }

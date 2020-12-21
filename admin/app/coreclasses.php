@@ -16,9 +16,6 @@ require_once APP_DIR . 'corefuncs.php';
 unset($_REQUEST);
 unset($_GET);
 
-/* XSS Prevention */
-$_POST = array_map_recursive($_POST, "cleanHtml");
-
 spl_autoload_extensions('.php');
 spl_autoload_register(array(
     'Loader',
@@ -152,6 +149,11 @@ final class Request
             }
         }
         return $headers;
+    }
+
+    public function getToken()
+    {
+        return isset($_SERVER['HTTP_X_TOKEN']) ? $_SERVER['HTTP_X_TOKEN'] : '';
     }
 
     public function setPathPrefix($pathprefix = null)
