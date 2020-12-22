@@ -21,6 +21,14 @@ final class cProfile extends cAuthController
     public function index()
     {}
 
+    public function api_search()
+    {
+        echo json_encode(array(
+            'code' => 20000,
+            'data' => ""
+        ));
+    }
+
     public function api_info()
     {
         echo json_encode(array(
@@ -29,7 +37,7 @@ final class cProfile extends cAuthController
                 'userid' => $this->user->userid,
                 'introduction' => $this->user->introduction,
                 'name' => $this->user->name,
-                'avatar' => '',
+                'avatar' => $this->user->avatar,
                 'usertype' => $this->user->usertype,
                 'reportunit' => $this->user->reportunit,
                 'roles' => $this->user->roles

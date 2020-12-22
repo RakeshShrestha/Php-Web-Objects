@@ -30,20 +30,6 @@ function cache()
     Cache::getContext(CACHE_TYPE);
 }
 
-/* Jwt related functions */
-function base64UrlEncode($text)
-{
-    return mb_str_replace([
-        '+',
-        '/',
-        '='
-    ], [
-        '-',
-        '_',
-        ''
-    ], base64_encode($text));
-}
-
 function setCurrentUser(array &$userdata = array())
 {
     Session::getContext(SESS_TYPE)->set('authUser', $userdata);
@@ -165,6 +151,19 @@ function mb_trim($string)
     $string = preg_replace("/(^\s+)|(\s+$)/us", "", $string);
 
     return $string;
+}
+
+function base64_url_encode($text)
+{
+    return mb_str_replace([
+        '+',
+        '/',
+        '='
+    ], [
+        '-',
+        '_',
+        ''
+    ], base64_encode($text));
 }
 
 function url_encode($string = null)
@@ -298,7 +297,7 @@ function getCountryList($cval = null)
         'CU' => 'Cuba',
         'CY' => 'Cyprus',
         'CZ' => 'Czech Republic',
-        'CI' => 'CÃ´te dâ€™Ivoire',
+        'CI' => 'Côte d’Ivoire',
         'DK' => 'Denmark',
         'DJ' => 'Djibouti',
         'DM' => 'Dominica',
@@ -432,8 +431,8 @@ function getCountryList($cval = null)
         'RO' => 'Romania',
         'RU' => 'Russia',
         'RW' => 'Rwanda',
-        'RE' => 'RÃ©union',
-        'BL' => 'Saint BarthÃ©lemy',
+        'RE' => 'Réunion',
+        'BL' => 'Saint Barthélemy',
         'SH' => 'Saint Helena',
         'KN' => 'Saint Kitts and Nevis',
         'LC' => 'Saint Lucia',
@@ -465,7 +464,7 @@ function getCountryList($cval = null)
         'SE' => 'Sweden',
         'CH' => 'Switzerland',
         'SY' => 'Syria',
-        'ST' => 'SÃ£o TomÃ© and PrÃ­ncipe',
+        'ST' => 'São Tomé and Príncipe',
         'TW' => 'Taiwan',
         'TJ' => 'Tajikistan',
         'TZ' => 'Tanzania',
@@ -501,7 +500,7 @@ function getCountryList($cval = null)
         'YE' => 'Yemen',
         'ZM' => 'Zambia',
         'ZW' => 'Zimbabwe',
-        'AX' => 'Ã…land Islands'
+        'AX' => 'Åland Islands'
     );
 
     if ($cval) {

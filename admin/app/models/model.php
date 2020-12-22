@@ -53,8 +53,10 @@ class model
         $stmt = $this->db->prepare($sql);
 
         $i = 0;
-        foreach ($bindings as $v) {
-            $stmt->bindValue(++ $i, $v);
+        if ($wherewhat) {
+			foreach ($bindings as $v) {
+				$stmt->bindValue(++ $i, $v);
+			}
         }
 
         $stmt->execute();

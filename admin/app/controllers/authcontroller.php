@@ -41,10 +41,10 @@ abstract class cAuthController
         $signatureProvided = $tokenParts[2];
 
         // build a signature based on the header and payload using the secret
-        $base64UrlHeader = base64UrlEncode($header);
-        $base64UrlPayload = base64UrlEncode($payload);
+        $base64UrlHeader = base64_url_encode($header);
+        $base64UrlPayload = base64_url_encode($payload);
         $signature = hash_hmac('sha256', $base64UrlHeader . "." . $base64UrlPayload, SECRET_KEY, true);
-        $base64UrlSignature = base64UrlEncode($signature);
+        $base64UrlSignature = base64_url_encode($signature);
 
         // check the expiration time - note this will cause an error if there is no 'exp' claim in the token
         $expiration = json_decode($payload)->exp;

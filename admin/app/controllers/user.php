@@ -50,23 +50,23 @@ final class cUser extends cController
                     'roles' => '["admin-token"]',
                     'introduction' => $user->c_name,
                     'name' => $user->email,
-                    'avatar' => '',
+                    'avatar' => 'useicon.png',
                     'usertype' => $user->n_user_type,
                     'reportunit' => $user->n_reportingunit_id,
                     'exp' => time() + 24 * 3600
                 ]);
 
                 // Encode Header
-                $base64UrlHeader = base64UrlEncode($header);
+                $base64UrlHeader = base64_url_encode($header);
 
                 // Encode Payload
-                $base64UrlPayload = base64UrlEncode($payload);
+                $base64UrlPayload = base64_url_encode($payload);
 
                 // Create Signature Hash
                 $signature = hash_hmac('sha256', $base64UrlHeader . "." . $base64UrlPayload, SECRET_KEY, true);
 
                 // Encode Signature to Base64Url String
-                $base64UrlSignature = base64UrlEncode($signature);
+                $base64UrlSignature = base64_url_encode($signature);
 
                 // Create JWT
                 $jwt = $base64UrlHeader . "." . $base64UrlPayload . "." . $base64UrlSignature;
