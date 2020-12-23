@@ -27,11 +27,7 @@ abstract class cAuthController
         $jwt = $this->req->getToken();
 
         if (! $jwt) {
-            echo json_encode(array(
-                'success' => false,
-                'msg' => 'Ivalid Access.'
-            ));
-            exit();
+			throw new ApiException('Ivalid Access.');
         }
 
         // split the token
@@ -51,11 +47,7 @@ abstract class cAuthController
         $tokenExpired = (time() > $expiration);
 
         if ($tokenExpired) {
-            echo json_encode(array(
-                'success' => false,
-                'msg' => 'Token has expired.'
-            ));
-            exit();
+			throw new ApiException('Token has expired.');
         }
 
         // verify it matches the signature provided in the token
@@ -64,11 +56,7 @@ abstract class cAuthController
         if ($signatureValid) {
             $this->user = json_decode($payload);
         } else {
-            echo json_encode(array(
-                'success' => false,
-                'msg' => 'Signatur is not vald'
-            ));
-            exit();
+			throw new ApiException('Signature is not vald.');
         }
     }
 }

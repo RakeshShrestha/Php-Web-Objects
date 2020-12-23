@@ -22,6 +22,11 @@ spl_autoload_register(array(
     'load'
 ));
 
+class ApiException extends Exception
+{
+	
+}
+
 final class DB
 {
 

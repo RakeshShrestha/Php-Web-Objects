@@ -27,6 +27,12 @@ $response = res();
 
 try {
     Application::run($request, $response);
+} catch (ApiException $e) {
+	echo json_encode(array(
+		'success' => false,
+		'msg' => $e->getMessage()
+	));
+    exit();
 } catch (Exception $e) {
     $data['message'] = DEBUG ? $e : '';
 

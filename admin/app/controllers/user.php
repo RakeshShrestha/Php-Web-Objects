@@ -78,10 +78,7 @@ final class cUser extends cController
                     )
                 ));
             } else {
-                echo json_encode(array(
-                    'success' => false,
-                    'msg' => 'Error Login'
-                ));
+				throw new ApiException('Error Login');
             }
         }
     }
