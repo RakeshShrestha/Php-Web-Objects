@@ -572,14 +572,14 @@ if (DEBUG) {
 
     function customError($errno, $errstr, $errfile, $errline)
     {
-		$emsg = ""; 
+        $emsg = "";
         $emsg .= "<div class='error' style='text-align:left'>";
         $emsg .= "<b>Custom error:</b> [$errno] $errstr<br />";
         $emsg .= "Error on line $errline in $errfile<br />";
         $emsg .= "Ending Script";
         $emsg .= "</div>";
-		
-		throw new Exception(emsg);
+
+        throw new Exception($emsg);
     }
 
     set_error_handler("customError");

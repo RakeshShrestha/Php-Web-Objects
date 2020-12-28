@@ -24,7 +24,6 @@ spl_autoload_register(array(
 
 class ApiException extends Exception
 {
-	
 }
 
 final class DB
@@ -158,7 +157,7 @@ final class Request
 
     public function getToken()
     {
-        return isset($_SERVER['HTTP_X_TOKEN']) ? $_SERVER['HTTP_X_TOKEN'] : '';
+        return isset($_SERVER['HTTP_X_TOKEN']) ? $_SERVER['HTTP_X_TOKEN'] : (isset($_COOKIE['Admin-Token']) ? $_COOKIE['Admin-Token'] : '');
     }
 
     public function setPathPrefix($pathprefix = null)
@@ -302,8 +301,7 @@ final class Application
 
     public static function run(Request &$request, Response &$response)
     {
-        $uriparts = explode('/', mb_str_replace(PATH_URI, '', $_SERVER['REQUEST_URI']));
-        // $uriparts = explode('/', $_SERVER['REQUEST_URI']);
+        $uriparts = explode('/', mb_str_replace(SITE_URI . PATH_URI, '', SITE_URI . $_SERVER['REQUEST_URI']));
         $uriparts = array_filter($uriparts);
 
         $controller = ($c = array_shift($uriparts)) ? $c : MAIN_CONTROLLER;
