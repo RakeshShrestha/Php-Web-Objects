@@ -263,10 +263,14 @@ final class View
 
     public static function assign(array &$vars = array(), $viewname = null)
     {
+        $req = req();
         if (is_array($vars)) {
             extract($vars);
         }
         ob_start();
+        if ($viewname == null) {
+            $viewname = mb_strtolower($req->getController() . '/' . $req->getMethod());
+        }
         include VIEW_DIR . mb_strtolower($viewname) . '.php';
         return ob_get_clean();
     }

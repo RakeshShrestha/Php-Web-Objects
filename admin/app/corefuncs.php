@@ -66,6 +66,18 @@ function clean($string = null)
     return strip_tags(mb_trim($string));
 }
 
+function bool_array_search($string = '', array $aval = array())
+{
+    $rval = false;
+
+    foreach ($aval as $key => $val) {
+        if (strstr($val, "'" . $string . "'")) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function cleanHtml($html = null)
 {
     $allowed_tags = array(
