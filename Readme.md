@@ -5,7 +5,7 @@ Simple/Easy to learn and use PHP MVC framework.
 
 ### PHP Requirement
 
-1. php >= 7.1
+1. php >= 7.1 to php 8
 2. pdo mysql extension
 3. mbstring
 

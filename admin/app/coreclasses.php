@@ -328,10 +328,7 @@ final class Application
 
         require_once $controllerfile;
 
-        if (! is_callable(array(
-            $cont,
-            $method
-        ))) {
+        if (! method_exists($cont, $method)) {
             $method = MAIN_METHOD;
         }
 
