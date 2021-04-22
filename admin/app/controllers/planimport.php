@@ -29,9 +29,7 @@ final class cPlanImport extends cAuthController
 
         $exec_query = FALSE;
 
-        $mses = json_decode($_COOKIE['userCookie']);
-
-        $ses = $mses->userId;
+        $ses = $this->user->userid;
 
         $xlsx = new SimpleExcel($_FILES['file']['tmp_name']);
 
@@ -103,7 +101,7 @@ final class cPlanImport extends cAuthController
                                     $exec_query = $i_stmt->execute();
                                 } catch (Exception $e) {
                                     $db->rollBack();
-                                    throw $e;
+                                    throw new ApiException($e);
                                 }
                             }
                         }
