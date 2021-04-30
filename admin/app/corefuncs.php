@@ -178,6 +178,22 @@ function base64_url_encode($text)
     ], base64_encode($text));
 }
 
+function base64_url_decode($text)
+{
+    $data = mb_str_replace(array(
+        '-',
+        '_'
+    ), array(
+        '+',
+        '/'
+    ), $text);
+    $mod4 = mb_strlen($data) % 4;
+    if ($mod4) {
+        $data .= substr('====', $mod4);
+    }
+    return base64_decode($data);
+}
+
 function url_encode($string = null)
 {
     return urlencode(utf8_encode($string));

@@ -15,37 +15,6 @@ final class Encryption
 
     private $_skey = "ThisIsCOOL";
 
-    public function safe_b64encode($string)
-    {
-        $data = base64_encode($string);
-        $data = mb_str_replace(array(
-            '+',
-            '/',
-            '='
-        ), array(
-            '-',
-            '_',
-            ''
-        ), $data);
-        return $data;
-    }
-
-    public function safe_b64decode($string)
-    {
-        $data = mb_str_replace(array(
-            '-',
-            '_'
-        ), array(
-            '+',
-            '/'
-        ), $string);
-        $mod4 = mb_strlen($data) % 4;
-        if ($mod4) {
-            $data .= substr('====', $mod4);
-        }
-        return base64_decode($data);
-    }
-
     public function encode($value)
     {
         if (! $value) {
@@ -55,7 +24,7 @@ final class Encryption
         $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
         $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
         $crypttext = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $this->_skey, $text, MCRYPT_MODE_ECB, $iv);
-        return mb_trim($this->safe_b64encode($crypttext));
+        return mb_trim(base64_url_encode($crypttext));
     }
 
     public function decode($value)
@@ -63,7 +32,7 @@ final class Encryption
         if (! $value) {
             return false;
         }
-        $crypttext = $this->safe_b64decode($value);
+        $crypttext = base64_url_decode($value);
         $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
         $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
         $decrypttext = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $this->_skey, $crypttext, MCRYPT_MODE_ECB, $iv);
