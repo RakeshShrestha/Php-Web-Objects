@@ -20,7 +20,7 @@ Password Values
 2. user@gmail.com = Mytest123
 
 ### Features
-1. Clean/Lightweight/Modern PHP MVC Framework
+1. Clean/Lightweight/Modern PHP MVC Framework - Certain Aspects of CI and CakePHP
 2. Multi DB support via PDO 
 3. Very lightweight database and model class -- CRUD Operation
 4. Good Dashbaord with visual elements
