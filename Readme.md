@@ -10,7 +10,8 @@ Simple/Easy to learn and use PHP MVC framework.
 3. mbstring
 
 Optional
-1. Memcached extension -- old memcache is for PHP5 only
+1. Curl -- In order to use firebase messaging and Amazon S3 Storage
+2. Memcached extension
 
 About PHP opcache
 1. PHP 7 has a built-in opcache. 
