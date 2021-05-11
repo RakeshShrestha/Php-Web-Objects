@@ -68,9 +68,7 @@ function clean($string = null)
 
 function bool_array_search($string = '', array $aval = array())
 {
-    $rval = false;
-
-    foreach ($aval as $key => $val) {
+    foreach ($aval as $val) {
         if (strstr($val, "'" . $string . "'")) {
             return true;
         }
@@ -249,15 +247,17 @@ function my_mime_content_type($filename)
         'doc' => 'application/msword',
         'rtf' => 'application/rtf',
         'xls' => 'application/vnd.ms-excel',
+        'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'ppt' => 'application/vnd.ms-powerpoint',
         // open office
         'odt' => 'application/vnd.oasis.opendocument.text',
         'ods' => 'application/vnd.oasis.opendocument.spreadsheet'
     );
 
-    $ext = strtolower(array_pop(explode('.', $filename)));
-    if (array_key_exists($ext, $mime_types)) {
-        return $mime_types[$ext];
+    $ext = explode('.', $filename);
+
+    if (array_key_exists($ext[1], $mime_types)) {
+        return $mime_types[$ext[1]];
     } else {
         return 'application/octet-stream';
     }
