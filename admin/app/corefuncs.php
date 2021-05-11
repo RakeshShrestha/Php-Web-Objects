@@ -256,8 +256,8 @@ function my_mime_content_type($filename)
 
     $ext = explode('.', $filename);
 
-    if (array_key_exists($ext[1], $mime_types)) {
-        return $mime_types[$ext[1]];
+    if (array_key_exists($ext[count($ext)-1], $mime_types)) {
+        return $mime_types[$ext[count($ext)-1]];
     } else {
         return 'application/octet-stream';
     }
