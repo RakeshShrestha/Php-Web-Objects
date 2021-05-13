@@ -245,19 +245,22 @@ function my_mime_content_type($filename)
         'ps' => 'application/postscript',
         // ms office
         'doc' => 'application/msword',
+        'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         'rtf' => 'application/rtf',
         'xls' => 'application/vnd.ms-excel',
         'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'ppt' => 'application/vnd.ms-powerpoint',
+        'pptx' => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
         // open office
         'odt' => 'application/vnd.oasis.opendocument.text',
         'ods' => 'application/vnd.oasis.opendocument.spreadsheet'
     );
 
-    $ext = explode('.', $filename);
+    $temporary = explode(".", $filename);
+    $ext = mb_strtolower(end($temporary));
 
-    if (array_key_exists($ext[count($ext)-1], $mime_types)) {
-        return $mime_types[$ext[count($ext)-1]];
+    if (array_key_exists($ext, $mime_types)) {
+        return $mime_types[$ext];
     } else {
         return 'application/octet-stream';
     }
