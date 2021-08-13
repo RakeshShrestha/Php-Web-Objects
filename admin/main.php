@@ -12,7 +12,7 @@
  */
 define('APP_DIR', realpath(dirname(__FILE__)) . '/app/');
 
-require_once APP_DIR . 'coreclasses.php';
+require_once APP_DIR . 'coreroutines.php';
 
 date_default_timezone_set(SYSTEM_TIMEZONE);
 

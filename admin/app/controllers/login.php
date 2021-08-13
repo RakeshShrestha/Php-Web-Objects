@@ -49,7 +49,7 @@ final class cLogin extends cController
             if ($user->status == 2) {
                 $this->res->redirect('login/', '<div style="font-size:13px; color:#ff0000; margin-bottom:4px; margin-top:8px;">LOGIN FAILED!</div>');
             }
-
+			
             setCurrentUser($user->get());
 
             if (getCurrentUserType() == 'superadmin') {
