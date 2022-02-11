@@ -23,8 +23,8 @@ Password Values
 ### Features
 1. Clean/Lightweight/Modern PHP MVC Framework - Certain Aspects of CI and CakePHP
 2. Multi DB support via PDO 
-3. Very lightweight database and model class -- CRUD Operation
-4. Good Dashbaord with visual elements
+3. Very lightweight database and model class  - CRUD Operation
+4. Good Dashbaord with visual elements - AdminLTE
 5. Authentication
 6. Uri to controller mapping
 7. Very lightweight template engine
