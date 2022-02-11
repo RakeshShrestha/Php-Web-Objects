@@ -13,7 +13,7 @@
 
 /*
  * 
-$decoder = new WKT(); # create a WKT decoder in gisconverter namespace
+$decoder = new WKT(); # create a WKT decoder
 $geometry = $decoder->geomFromText('MULTIPOLYGON(((10 10,10 20,20 20,20 15,10 10)))'); # create a geometry from a given string input
 
 print $geometry->toGeoJSON();      # output geometry in GeoJSON format
