@@ -1,5 +1,5 @@
 
-Simple/Easy to learn and use PHP MVC framework. Very low memory footprint framework (1MB to 3MB) per request
+Simple/Easy to learn and use PHP MVC framework. Very low memory footprint framework (1MB to 6MB) per request
 =======
 
 <img src="https://github.com/RakeshShrestha/Php-Web-Objects/blob/master/screen/dashboard1.png?raw=true" alt="Dashboard" />
