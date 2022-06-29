@@ -14,9 +14,6 @@ Optional
 1. Curl -- In order to use firebase messaging and Amazon S3 Storage
 2. Memcached extension
 
-About PHP opcache
-1. PHP 7 has a built-in opcache. 
-
 Password Values
 1. superadmin@gmail.com = Mytest123
 2. user@gmail.com = Mytest123
