@@ -1,5 +1,5 @@
 
-Simple/Easy to learn and use PHP MVC framework. Very low memory footprint framework (1MB to 6MB) per request
+Simple/Easy to learn and use PHP MVC framework. Very low memory footprint framework
 =======
 
 <img src="https://github.com/RakeshShrestha/Php-Web-Objects/blob/master/screen/dashboard1.png?raw=true" alt="Dashboard" />
@@ -11,7 +11,7 @@ Simple/Easy to learn and use PHP MVC framework. Very low memory footprint framew
 3. mbstring
 
 Optional
-1. Curl -- In order to use firebase messaging and Amazon S3 Storage
+1. Curl -- In order to use firebase messaging, curl extended soap client with ntlmstream support and Amazon S3 Storage
 2. Memcached extension
 
 Password Values
@@ -28,7 +28,7 @@ Password Values
 7. Very lightweight template engine
 8. PHP native Views
 9. Zero dependencies, add extra libraries only when you need it
-10. Useful builtin libraries for mail, firebase messaging, amazon s3 storage, geometry classes and format conversion routines, memcached, encryption, excelxlsx import, pagination, jwt api and QR code
+10. Useful builtin libraries for mail, firebase messaging, amazon s3 storage, geometry classes and format conversion routines, memcached, SoapClient, encryption, excelxlsx import, pagination, jwt api and QR code
 11. Builtin XSS security
 12. Builtin SQL injection security
 
