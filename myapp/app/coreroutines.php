@@ -186,12 +186,12 @@ function base64_url_decode($text)
 
 function url_encode($string = null)
 {
-    return urlencode(utf8_encode($string));
+    return urlencode($string);
 }
 
 function url_decode($string = null)
 {
-    return utf8_decode(urldecode($string));
+    return urldecode($string);
 }
 
 function my_mime_content_type($filename)
