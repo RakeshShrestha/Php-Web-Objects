@@ -106,12 +106,18 @@ function getRequestIP()
 
 function genUID()
 {
-    return mb_substr(md5(uniqid(rand())), 0, 12);
+	$bytes = random_bytes(16);
+	assert(mb_strlen($data) == 16);
+	
+	$hex = bin2hex($bytes);
+	
+	return substr($hex, 0, 12);                    
 }
 
 function genGUID()
 {
-    $data = openssl_random_pseudo_bytes(16);
+    $data = random_bytes(16);
+	assert(mb_strlen($data) == 16);
 
     $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
     $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
