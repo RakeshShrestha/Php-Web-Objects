@@ -106,18 +106,18 @@ function getRequestIP()
 
 function genUID()
 {
-	$bytes = random_bytes(16);
-	assert(mb_strlen($data) == 16);
-	
-	$hex = bin2hex($bytes);
-	
-	return substr($hex, 0, 12);                    
+    $bytes = random_bytes(16);
+    assert(mb_strlen($data) == 16);
+
+    $hex = bin2hex($bytes);
+
+    return substr($hex, 0, 12);
 }
 
 function genGUID()
 {
     $data = random_bytes(16);
-	assert(mb_strlen($data) == 16);
+    assert(mb_strlen($data) == 16);
 
     $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
     $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
@@ -253,10 +253,10 @@ function my_mime_content_type($filename)
         'odt' => 'application/vnd.oasis.opendocument.text',
         'ods' => 'application/vnd.oasis.opendocument.spreadsheet'
     );
-    
+
     $temporary = explode(".", $filename);
     $ext = mb_strtolower(end($temporary));
-    
+
     if (array_key_exists($ext, $mime_types)) {
         return $mime_types[$ext];
     } else {
@@ -571,7 +571,6 @@ final class View
 }
 
 // begin controller class
-
 abstract class cController
 {
 
