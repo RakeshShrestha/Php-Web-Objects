@@ -28,7 +28,7 @@ Password Values
 7. Very lightweight template engine
 8. PHP native Views
 9. Zero dependencies, add extra libraries only when you need it
-10. Useful builtin libraries for mail, firebase messaging, amazon s3 storage, geometry classes and format conversion routines, memcached, SoapClient, encryption, excelxlsx import, pagination, jwt api and QR code
+10. Useful builtin libraries for mail, firebase messaging, smpp (smsc), amazon s3 storage, geometry classes and format conversion routines, memcached, SoapClient for NTLMStream, encryption, excelxlsx import, pagination, jwt api and QR code
 11. Builtin XSS security
 12. Builtin SQL injection security
 
