@@ -417,10 +417,6 @@ final class SMPP
         $minutes = (int) ($duration / 60) - $hours * 60;
         $seconds = (int) $duration - $hours * 60 * 60 - $minutes * 60;
 
-        if ($this->debug) {
-            echo 'Seconds from last enquire link = ' . $seconds . PHP_EOL;
-        }
-
         if ($seconds >= $this->enquirelink_timeout) {
             $this->enquirelink();
         }
@@ -430,13 +426,7 @@ final class SMPP
     {
         if ($this->state != "open")
             return false;
-        if ($this->debug) {
-            echo "Binding receiver...\n\n";
-        }
         $status = $this->_bind($login, $pass, SMPP::BIND_RECEIVER);
-        if ($this->debug) {
-            echo "Binding status  : $status\n\n";
-        }
         if ($status === 0)
             $this->state = "bind_rx";
         return ($status === 0);
@@ -446,13 +436,7 @@ final class SMPP
     {
         if ($this->state != "open")
             return false;
-        if ($this->debug) {
-            echo "Binding transmitter...\n\n";
-        }
         $status = $this->_bind($login, $pass, SMPP::BIND_TRANSMITTER);
-        if ($this->debug) {
-            echo "Binding status  : $status\n\n";
-        }
         if ($status === 0)
             $this->state = "bind_tx";
 
@@ -466,13 +450,7 @@ final class SMPP
     {
         if ($this->state == "closed")
             return;
-        if ($this->debug) {
-            echo "Unbinding...\n\n";
-        }
         $status = $this->sendCommand(SMPP::UNBIND, "");
-        if ($this->debug) {
-            echo "Unbind status   : $status\n\n";
-        }
         fclose($this->socket);
         $this->state = "closed";
     }
@@ -493,9 +471,6 @@ final class SMPP
         }
         // read pdu
         do {
-            if ($this->debug) {
-                echo "read sms...\n\n";
-            }
             $pdu = $this->readPDU();
             // check for enquire link command
             if ($pdu['id'] == SMPP::ENQUIRE_LINK) {
@@ -700,9 +675,6 @@ final class SMPP
         $response = $this->sendCommand(SMPP::ENQUIRE_LINK, "");
         if ($response == 0) {
             $this->lastenquire = microtime(true);
-            if ($this->debug) {
-                echo "ENQUIRE!!" . PHP_EOL;
-            }
         }
         return $response;
     }
@@ -722,7 +694,7 @@ final class SMPP
             return false;
         // unpack PDU
         $ar = unpack("C*", $pdu['body']);
-        print_r($ar);
+
         $sms = array(
             'service_type' => $this->getString($ar, 6),
             'source_addr_ton' => array_shift($ar),
@@ -743,11 +715,7 @@ final class SMPP
             'sm_length' => array_shift($ar),
             'short_message' => $this->getString($ar, 255)
         );
-        if ($this->debug) {
-            echo "Delivered sms:\n";
-            print_r($sms);
-            echo "\n";
-        }
+
         // send response of recieving sms
         $this->sendPDU(SMPP::DELIVER_SM_RESP, "\0", $pdu['sn']);
         return $sms;
@@ -767,22 +735,13 @@ final class SMPP
     {
         $length = strlen($pdu) + 16;
         $header = pack("NNNN", $length, $command_id, 0, $seq_number);
-        if ($this->debug) {
-            echo "Send PDU        : $length bytes\n";
-            $this->printHex($header . $pdu);
-            echo "command_id      : " . $command_id . "\n";
-            echo "sequence number : $seq_number\n\n";
-        }
 
         $writed = @fwrite($this->socket, $header . $pdu, $length);
 
         // Close conection if not bind
         if ($writed == FALSE) {
-            if ($this->debug)
-                echo "Lost connection to SMSC" . PHP_EOL;
             exit();
         }
-        ;
     }
 
     private function readPDU_resp($seq_number, $command_id)
@@ -832,14 +791,7 @@ final class SMPP
         } else {
             $body = "";
         }
-        if ($this->debug) {
-            echo "Read PDU        : $length bytes\n";
-            $this->printHex($tmp . $tmp2 . $body);
-            echo "body len        : " . strlen($body) . "\n";
-            echo "Command id      : $command_id\n";
-            echo "Command status  : $command_status\n";
-            echo "sequence number : $sequence_number\n\n";
-        }
+
         $pdu = array(
             'id' => $command_id,
             'status' => $command_status,
